@@ -139,7 +139,7 @@ const Cart = () => {
           </div>
         </>
       ))}
-      {checkout.lineItems.length === 0 && (
+      {!!checkout.lineItems.length === 0 && (
         <div className={s.empty_flex}>
           <Link className={s.link} to="/">
             <h3> Continue Shopping</h3>
