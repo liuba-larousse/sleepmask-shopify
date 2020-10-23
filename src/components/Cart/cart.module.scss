@@ -1,0 +1,200 @@
+@import '~/css/variables.scss';
+
+.container {
+    padding-top: 15vh;
+    color: $clr-text-black;
+}
+
+.page_title {
+    font-weight: 500;
+    color: $clr-text-dark;
+    text-transform: uppercase;
+
+}
+
+.flex {
+    margin-top: 2rem;
+}
+
+.header {
+    display: none;
+}
+
+.body {
+    padding: 1rem 0;
+    display: flex;
+    flex-direction: row;
+    min-height: 20vh;
+    border-top: 1px solid $clr-lines;
+    position: relative;
+
+
+    div:first-child {
+        flex: 1;
+    }
+
+    div:last-child {
+        flex: 2;
+        display: flex;
+        flex-direction: column;
+
+        h4:first-child {
+            color: $clr-text-dark;
+        }
+
+        h4 {
+            margin-bottom: 2rem;
+        }
+
+        h4:last-child {
+            visibility: collapse;
+        }
+    }
+}
+
+.footer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: $clr-main-light;
+    padding: 1rem;
+}
+
+
+.image {
+    width: 20rem;
+    height: 20rem;
+}
+
+.link {
+    color: $clr-text-dark;
+    text-decoration-line: none;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    transition: $transition;
+    text-decoration-line: underline;
+
+    &:hover {
+
+        color: $clr-main-accent;
+    }
+}
+
+.subfooter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 2rem;
+}
+
+.btn_remove {
+    position: absolute;
+    font-size: 4rem;
+    color: $clr-main-accent;
+    top: 0;
+    right: 0;
+
+    &:hover {
+        color: $clr-delete;
+    }
+}
+
+.btn_checkout {
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon_checkout {
+    font-size: 2rem;
+    margin-right: 1rem;
+}
+
+.empty_flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10vh;
+    height: fit-content;
+    text-align: center;
+
+    .empty_img {
+        height: 20rem;
+        width: 20rem;
+    }
+}
+
+
+@media (min-width: 48em) {
+
+    .body {
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+
+        div:last-child {
+            flex: 5;
+            flex-direction: row;
+
+            h4 {
+                margin-bottom: 0rem;
+            }
+
+            h4:nth-child(1) {
+                flex: 2;
+            }
+
+            h4:nth-child(2),
+            div:nth-child(3),
+            h4:nth-child(4) {
+                flex: 1;
+            }
+
+            h4:last-child {
+                visibility: visible;
+            }
+        }
+    }
+
+    .footer {
+        justify-content: flex-end;
+
+        h2:first-child {
+            margin-right: 8rem;
+        }
+    }
+
+    .subfooter {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .btn_checkout {
+        order: 1;
+        max-width: 27rem;
+        margin-bottom: 0rem;
+    }
+}
+
+@media (min-width: 62em) {
+    .header {
+        padding: 1rem 0;
+        display: flex;
+        flex-direction: row;
+
+        h2:first-child {
+            flex: 3;
+        }
+
+        h2:nth-child(2),
+        h2:nth-child(3),
+        h2:nth-child(4) {
+            flex: 1;
+        }
+    }
+
+}

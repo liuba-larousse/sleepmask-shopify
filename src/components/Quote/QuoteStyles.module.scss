@@ -1,0 +1,24 @@
+@import '~/css/variables.scss';
+
+
+.container {
+
+    display: flex;
+    text-align: center;
+    align-items: center;
+    height: fit-content;
+    padding: 5rem;
+    width: 100%;
+    background: $clr-main-light;
+
+    h1 {
+        margin: auto auto;
+        color: $clr-text-dark;
+    }
+}
+
+@media (min-width: 48em) {
+    .container {
+        margin-top: 10rem;
+    }
+}

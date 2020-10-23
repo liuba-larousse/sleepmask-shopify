@@ -1,0 +1,273 @@
+@import '~/css/variables.scss';
+
+.hide {
+  display: none;
+}
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 1010;
+}
+
+.container {
+  background-color: #fff;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1070;
+  color: $clr-text-black;
+  width: 100%;
+  max-width: 45rem;
+  transform: translateX(0);
+}
+
+.slidein {
+  animation-name: slide-in-right;
+  animation-duration: 0.7s;
+  animation-timing-function: ease;
+  animation-delay: 0s;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-fill-mode: none;
+}
+
+@keyframes slide-in-right {
+  0% {
+    -webkit-transform: translateX(1000px);
+    transform: translateX(1000px);
+    opacity: 0;
+  }
+
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.slideout {
+  animation-name: slide-out-right;
+  animation-duration: 0.7s;
+  animation-timing-function: ease;
+  animation-delay: 0s;
+  animation-iteration-count: 1;
+  animation-direction: reverse;
+  animation-fill-mode: none;
+}
+
+@keyframes slide-out-right {
+  0% {
+    background-color: #fff;
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(1000px);
+    opacity: 0;
+  }
+}
+
+//header
+
+.header {
+  display: flex;
+  justify-content: flex-start;
+  width: 90%;
+  margin: 2rem auto;
+  align-items: center;
+
+  :first-child {
+    font-weight: 400;
+  }
+
+  :nth-child(2),
+  :nth-child(3) {
+    font-weight: 100;
+  }
+
+  h3 {
+    margin-right: 1rem;
+  }
+}
+
+.btn_close {
+  margin-left: auto;
+  font-size: 4rem;
+  cursor: pointer;
+  transition: $transition;
+  background-color: #fff;
+  &:hover {
+    color: $clr-text-grey;
+  }
+}
+
+.empty_flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10vh;
+  height: fit-content;
+  text-align: center;
+
+  .empty_img {
+    height: 20rem;
+    width: 20rem;
+  }
+}
+
+.btn_goback {
+  color: $clr-text-dark;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  transition: $transition;
+  background-color: transparent;
+  &:hover {
+    color: $clr-main-accent;
+    text-decoration: underline;
+  }
+}
+
+.link {
+  color: $clr-text-dark;
+  text-decoration-line: none;
+  margin-bottom: 2rem;
+  transition: $transition;
+  text-decoration-line: underline;
+  background-color: #fff;
+  &:hover {
+    color: $clr-main-accent;
+  }
+}
+
+//body
+
+.body {
+  width: 90%;
+  margin: 2rem auto;
+  padding: 2rem 0;
+  display: flex;
+  flex-direction: row;
+  min-height: 20vh;
+  border-top: 1px solid $clr-lines;
+  position: relative;
+
+  div:first-child {
+    flex: 1;
+    justify-content: center;
+  }
+
+  div:last-child {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    h4 {
+      margin-bottom: 2rem;
+    }
+
+    h4:last-child {
+      visibility: collapse;
+    }
+  }
+}
+
+.image {
+  width: 20rem;
+  height: 20rem;
+}
+
+.btn_remove {
+  position: absolute;
+  font-size: 4rem;
+  color: $clr-main-accent;
+  top: 0;
+  right: 0;
+  transition: $transition;
+  cursor: pointer;
+  background-color: #fff;
+  &:hover {
+    color: $clr-delete;
+  }
+}
+
+//footer
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $clr-main-light;
+  padding: 2rem;
+
+  h3 {
+    font-weight: 400;
+  }
+}
+
+.subfooter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 2rem;
+}
+
+.btn_checkout {
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.discount {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+  h3 {
+    font-weight: 400;
+    color: $clr-delete;
+  }
+}
+
+.upsale {
+  background: #fff8cd;
+  padding: 2rem;
+  align-items: center;
+  :first-child {
+    margin-bottom: 1rem;
+  }
+}
+
+.upsaleflex {
+  display: flex;
+  flex-direction: row;
+  :first-child {
+    flex: 1;
+    display: inline-block;
+    text-align: center;
+  }
+  :last-child {
+    flex: 1;
+    display: inline-block;
+    text-align: center;
+  }
+}
+
+.imageUpsale {
+  width: 9rem;
+  height: 9rem;
+}
+
+.btn_addOne {
+  width: 18rem;
+  height: 4rem;
+}

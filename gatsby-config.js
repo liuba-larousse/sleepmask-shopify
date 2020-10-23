@@ -1,16 +1,18 @@
 const path = require('path')
 
 require('dotenv').config({
-  path: `.env.${process.env.NODE_ENV}`
+  path: `.env.${process.env.NODE_ENV}`,
 })
 
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Shopify Starter`,
-    description: `Kick off your next, ecommerce experience with this Gatsby starter. This starter ships with credentials to a shopify demo store so you can try it out immediately.`,
-    author: `@alexanderhorl`,
+    title: `Sove Mykt`,
+    description: `Best sleep mask in the world`,
+    author: `@liuba.larousse`,
   },
   plugins: [
+    `gatsby-plugin-smoothscroll`,
+    `@bumped-inc/gatsby-plugin-optional-chaining`,
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -21,7 +23,12 @@ module.exports = {
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
-    `gatsby-plugin-layout`,
+    {
+      resolve: `gatsby-plugin-layout`,
+      options: {
+        component: require.resolve(`./src/components/Layout`),
+      },
+    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -66,13 +73,28 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: "UA-134421805-1",
+        trackingId: 'UA-134421805-1',
         anonymize: true,
         respectDNT: true,
       },
     },
+    {
+      resolve: 'gatsby-source-google-spreadsheet',
+      options: {
+        spreadsheetId: '1alLcPR7xO2KtqWRvqxzzhTvLVgf97qexze1mnF57HdY',
+        // spreadsheetName: 'reviews',
+        typePrefix: 'GoogleSpreadsheet',
+        credentials: JSON.parse(
+          `${process.env.GOOGLE_SERVICE_ACCOUNT_CREDENTIALS}`
+        ),
+        filterNode: () => true,
+        mapNode: node => node,
+      },
+    },
+
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.app/offline
     // 'gatsby-plugin-offline',
+    `gatsby-plugin-sass`,
   ],
 }

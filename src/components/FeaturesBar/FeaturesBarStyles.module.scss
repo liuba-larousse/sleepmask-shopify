@@ -1,0 +1,44 @@
+@import '~/css/variables.scss';
+
+.container {
+    margin-top: 10rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 80vh;
+    width: 100%;
+    background: $background;
+
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    color: $clr-main-light;
+
+    >h3 {
+        letter-spacing: 0.2rem;
+        text-transform: uppercase;
+        font-weight: 400;
+    }
+}
+
+.icon {
+    transform: scale(2.5, 2.5);
+    padding: 2rem;
+}
+
+@media (min-width: 48em) {
+    .container {
+        display: flex;
+        flex-direction: row;
+        height: 20rem;
+        align-items: center;
+    }
+
+    .icon {
+        transform: scale(3, 3)
+    }
+}

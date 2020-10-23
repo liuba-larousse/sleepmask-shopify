@@ -1,7 +1,9 @@
-/**
- * Implement Gatsby's Browser APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/browser-apis/
- */
+import React from 'react'
+import { CartContextProvider } from './src/context/CartContext'
+import { SideBarStateContextProvider } from './src/context/SideBarStateContext'
 
-// You can delete this file if you're not using it
+export const wrapRootElement = ({ element }) => (
+  <CartContextProvider>
+    <SideBarStateContextProvider>{element}</SideBarStateContextProvider>
+  </CartContextProvider>
+)

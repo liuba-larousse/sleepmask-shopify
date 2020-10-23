@@ -1,13 +1,11 @@
 import React from 'react'
-
-import Cart from '~/components/Cart'
-import { Container } from '~/utils/styles'
+import '~/css/main.scss'
+import Cart from '~/components/Cart/Cart'
 
 const CartPage = () => (
-  <Container>
-    <h1>Cart</h1>
+  <div className="cart wrapper">
     <Cart />
-  </Container>
+  </div>
 )
 
 export default CartPage

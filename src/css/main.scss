@@ -1,0 +1,41 @@
+@import './variables';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: none;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+li {
+  list-style: none;
+}
+
+button {
+  outline: none;
+}
+
+.wrapper {
+  width: 90%;
+  margin: 0 auto;
+  max-width: 100rem;
+}
+
+.cart {
+  min-height: 100vh;
+}
+
+@media (min-width: 48em) {
+  .wrapper {
+    width: 80%;
+  }
+}

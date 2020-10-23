@@ -1,0 +1,66 @@
+@import './variables.scss';
+
+.button_main {
+    width: 27rem;
+    height: 5.5rem;
+    background-color: $clr-attention;
+    color: $clr-main-light;
+    font-family: $font-secondary;
+    font-size: $font-h3;
+    letter-spacing: 0.2rem;
+    text-transform: capitalize;
+    border-radius: 60px;
+    transition: $transition;
+    cursor: pointer;
+
+
+    &:hover {
+        background-color: $clr-attention-shade;
+    }
+}
+
+.button_flex {
+    width: 90%;
+    height: 5.5rem;
+    background-color: $clr-attention;
+    color: $clr-main-light;
+    font-family: $font-secondary;
+    font-size: $font-h3;
+    letter-spacing: 0.2rem;
+    text-transform: capitalize;
+    border-radius: 60px;
+    cursor: pointer;
+    transition: $transition;
+
+    &:hover {
+        background-color: $clr-attention-shade;
+    }
+}
+
+.button_second {
+    width: 27rem;
+    height: 5.5rem;
+    background-color: $clr-main-accent;
+    color: $clr-main-light;
+    font-size: $font-h3;
+    font-family: $font-secondary;
+    letter-spacing: 0.2rem;
+    text-transform: capitalize;
+    border-radius: 60px;
+    cursor: pointer;
+    transition: $transition;
+
+    &:hover {
+        background-color: white;
+        color: $clr-main-accent;
+        border: 2px solid $clr-main-accent;
+    }
+}
+
+
+
+.stars {
+    color: #f3c623;
+    font-size: $font-h2;
+    width: fit-content;
+}

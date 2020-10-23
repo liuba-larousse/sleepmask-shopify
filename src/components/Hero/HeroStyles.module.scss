@@ -1,0 +1,73 @@
+@import '~/css/variables.scss';
+
+.image {
+    width: 100%;
+    height: 100vh;
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.overlay {
+    width: 100%;
+    height: 100vh;
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background: $background;
+    opacity: 0.5;
+    position: absolute;
+    z-index: 2;
+}
+
+.container {
+    position: absolute;
+    z-index: 10;
+    display: flex;
+    width: 90%;
+    height: 100vh;
+    margin-left: 5%;
+    height: 90vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top: 10vh;
+
+    h1,
+    h2 {
+        text-align: center;
+        color: $clr-main-light;
+    }
+
+    h1 {
+        font-style: italic;
+        font-size: 6rem;
+    }
+}
+
+.button {
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+}
+
+@media (min-width: 48em) {
+    .container {
+        display: flex;
+        width: 30%;
+        height: 100vh;
+        margin-left: 10%;
+        height: 100vh;
+        flex-direction: column;
+        align-items: flex-start;
+
+        h1 {
+            text-align: left;
+        }
+
+        h2 {
+            text-align: justify;
+
+        }
+    }
+
+}

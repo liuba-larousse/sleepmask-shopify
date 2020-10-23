@@ -1,0 +1,118 @@
+@import '~/css/variables.scss';
+
+.container {
+  scroll-behavior: smooth;
+  margin-top: 10rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 5rem;
+  grid-template-areas:
+    'info'
+    'carousel';
+}
+
+.carousel {
+  grid-area: carousel;
+}
+
+.small_grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.thumbnail {
+  width: 8rem;
+  height: 8rem;
+}
+
+.info {
+  color: $clr-text-black;
+  grid-area: info;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+
+  h1 {
+    color: $clr-text-dark;
+  }
+
+  p {
+    margin-top: 3rem;
+    line-height: 1.75;
+  }
+}
+
+.price {
+  margin-bottom: 1rem;
+
+  h2:nth-child(1) {
+    color: red;
+  }
+
+  h2:nth-child(2) {
+    text-decoration: line-through;
+  }
+}
+
+.stars {
+  color: $gold;
+  font-size: $font-h2;
+  text-align: center;
+  margin-bottom: 1rem;
+  background-color: #fff;
+  cursor: pointer;
+  width: fit-content;
+  transition: all 0.1s ease;
+  &:hover {
+    border-bottom: 2px solid $gold;
+  }
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  button {
+    margin-top: 0;
+  }
+}
+
+.prev,
+.next {
+  font-size: $font-h2;
+  color: $clr-text-grey;
+
+  :hover {
+    color: $clr-text-dark;
+  }
+}
+
+.line {
+  width: 100%;
+  height: 1px;
+  background-color: $clr-text-grey;
+}
+
+@media (min-width: 48em) {
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: 'carousel info';
+  }
+
+  .info {
+    grid-area: info;
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+  }
+
+  .stars {
+    text-align: justify;
+  }
+}
