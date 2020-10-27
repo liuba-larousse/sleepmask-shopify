@@ -13,6 +13,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
     color: $clr-main-light;
+
+    p {
+        width: 80%;
+    }
 
 }

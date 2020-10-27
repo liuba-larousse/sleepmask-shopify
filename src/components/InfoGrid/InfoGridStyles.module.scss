@@ -2,6 +2,8 @@
 
 .grid {
     position: relative;
+    overflow: hidden;
+    max-width: 100%;
 
     svg {
         position: absolute;

@@ -4,7 +4,7 @@ import s from '../InfoGridStyles.module.scss'
 import { button_second } from '~/css/components.module.scss'
 import scrollTo from 'gatsby-plugin-smoothscroll'
 
-export default function InfoCard({ img, title, desc }) {
+export default function InfoCard({ img, title, desc, btn }) {
   return (
     <>
       <section className={s.container}>
@@ -18,7 +18,7 @@ export default function InfoCard({ img, title, desc }) {
             onClick={() => scrollTo('#product')}
             className={button_second}
           >
-            buy now
+            {btn}
           </button>
         </div>
       </section>

@@ -17,8 +17,6 @@ export default function Accordion() {
   `)
   const { nodes } = data
 
-  //   const [nodeIndex, setNodeIndex] = useState(0)
-  //   const { id } = nodes[0]
   const [isOpen, setOpen] = useState('')
 
   const toggleAnswer = id => {

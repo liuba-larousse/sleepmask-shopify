@@ -6,7 +6,7 @@ import { button_main } from '~/css/components.module.scss'
 import scrollTo from 'gatsby-plugin-smoothscroll'
 
 export default function Banner() {
-  const { banner } = useStaticQuery(graphql`
+  const { banner, fragment } = useStaticQuery(graphql`
     {
       banner: file(relativePath: { eq: "foot-banner.jpeg" }) {
         childImageSharp {
@@ -14,6 +14,9 @@ export default function Banner() {
             ...GatsbyImageSharpFluid
           }
         }
+      }
+      fragment: googleSpreadsheetPage {
+        ...PageFields
       }
     }
   `)
@@ -24,12 +27,12 @@ export default function Banner() {
       <BackgroundImage className={s.image} fluid={fluid}>
         <div className={s.overlay}></div>
         <div className={s.container}>
-          <h1>Ready to bring serenity into your life?</h1>
+          <h1>{fragment.bannerQuote}</h1>
           <button
             className={`${button_main} ${s.link}`}
             onClick={() => scrollTo('#product')}
           >
-            shop now
+            {fragment.btnBannerSection}
           </button>
         </div>
       </BackgroundImage>

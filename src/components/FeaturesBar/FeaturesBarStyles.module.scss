@@ -15,6 +15,7 @@
 .box {
     display: flex;
     flex-direction: column;
+    align-items: center;
     text-align: center;
     color: $clr-main-light;
 
@@ -26,8 +27,7 @@
 }
 
 .icon {
-    transform: scale(2.5, 2.5);
-    padding: 2rem;
+    margin-bottom: 2rem;
 }
 
 @media (min-width: 48em) {
@@ -36,9 +36,5 @@
         flex-direction: row;
         height: 20rem;
         align-items: center;
-    }
-
-    .icon {
-        transform: scale(3, 3)
     }
 }

@@ -17,6 +17,9 @@ export default function Hero() {
               }
             }
           }
+          fragment: googleSpreadsheetPage {
+            ...PageFields
+          }
         }
       `}
       render={data => {
@@ -27,17 +30,14 @@ export default function Hero() {
             <BackgroundImage className={s.image} fluid={imageData}>
               <div className={s.overlay}></div>
               <div className={s.container}>
-                <h1>Lorem ipsum sit amet consetetur</h1>
-                <h2>
-                  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                  diam nonumy eirmod
-                </h2>
+                <h1>{data.fragment.heroTitle}</h1>
+                <h2>{data.fragment.heroSubtitle}</h2>
 
                 <button
                   onClick={() => scrollTo('#product')}
                   className={`${s.button} ${button_main}`}
                 >
-                  buy now
+                  {data.fragment.btnBannerSection}
                 </button>
               </div>
             </BackgroundImage>

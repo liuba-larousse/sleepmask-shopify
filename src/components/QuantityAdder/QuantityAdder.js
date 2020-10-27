@@ -4,7 +4,7 @@ import { button_flex } from '~/css/components.module.scss'
 import CartContext from '~/context/CartContext'
 import SideBarStateContext from '~/context/SideBarStateContext'
 
-function QuantityAdder({ variantId }) {
+function QuantityAdder({ variantId, text }) {
   const [quantity, setQuantity] = React.useState(1)
   const { updateLineItem } = React.useContext(CartContext)
 
@@ -40,7 +40,7 @@ function QuantityAdder({ variantId }) {
           type="submit"
           className={button_flex}
         >
-          add to cart
+          {text}
         </button>
       </form>
     </div>

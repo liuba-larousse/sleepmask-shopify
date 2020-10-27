@@ -8,58 +8,40 @@ import { FaStar } from 'react-icons/fa'
 import scrollTo from 'gatsby-plugin-smoothscroll'
 
 export default function Product() {
-  const { product } = useStaticQuery(
+  const { product, fragment } = useStaticQuery(
     graphql`
       {
-        product: allShopifyProduct {
-          nodes {
-            images {
-              image: localFile {
-                childImageSharp {
-                  fluid {
-                    ...GatsbyImageSharpFluid
-                  }
-                }
-              }
-            }
-            title
-            description
-            descriptionHtml
-            variants {
-              shopifyId
-              price
-              compareAtPrice
-            }
-          }
+        product: shopifyProduct {
+          ...ProductFields
+        }
+        fragment: googleSpreadsheetPage {
+          ...PageFields
         }
       }
     `
   )
-
+  console.log('product:', product)
   //values
-  const { title, description, variants, images } = product.nodes[0]
-  const { price, compareAtPrice } = variants[0]
-  const variantId = variants[0].shopifyId
+  const { title, description, variants, images } = product
+  const { price, compareAtPrice, shopifyId } = variants[0]
+  const variantId = shopifyId
+  console.log(price, compareAtPrice)
 
   //carousel
-  const length = product.nodes[0].images.length - 1
+  const length = product.images.length - 1
   const [index, setIndex] = useState(0)
   const handleNext = () =>
     index === length ? setIndex(0) : setIndex(index + 1)
   const handlePrevious = () =>
     index === 0 ? setIndex(length) : setIndex(index - 1)
-  const { image } = product.nodes[0].images[index]
+  const { fluid } = product.images[index].localFile.childImageSharp
 
   // Add to cart
 
   return (
     <section id="product" className={s.container}>
       <div className={s.carousel}>
-        <Img
-          className={s.image}
-          fluid={image.childImageSharp.fluid}
-          key={image.id}
-        />
+        <Img className={s.image} fluid={fluid} />
         <div className={s.buttons}>
           <button onClick={() => handlePrevious()}>
             <HiArrowLeft className={s.prev} />
@@ -73,8 +55,8 @@ export default function Product() {
           {images.map(each => (
             <Img
               className={s.thumbnail}
-              fluid={each.image.childImageSharp.fluid}
-              key={image.id}
+              fluid={each.localFile.childImageSharp.fluid}
+              key={each.localFile.id}
             />
           ))}
         </div>
@@ -95,7 +77,10 @@ export default function Product() {
         </button>
 
         <div className={s.line}></div>
-        <QuantityAdder variantId={variantId} />
+        <QuantityAdder
+          variantId={variantId}
+          text={fragment.btnProductSection}
+        />
         <p>{description}</p>
       </div>
     </section>

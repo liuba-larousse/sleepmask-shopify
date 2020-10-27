@@ -1,11 +1,9 @@
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import InfoCard from './InfoCard/InfoCard'
-import { info } from '../data'
 import s from './InfoGridStyles.module.scss'
 
 export default function InfoGrid() {
-  const features = [...info]
   const data = useStaticQuery(graphql`
     {
       img1: file(relativePath: { eq: "info1.jpeg" }) {
@@ -29,8 +27,18 @@ export default function InfoGrid() {
           }
         }
       }
+      allGoogleSpreadsheetCards {
+        cards: nodes {
+          title
+          description
+          id
+          button
+        }
+      }
     }
   `)
+
+  const { cards } = data.allGoogleSpreadsheetCards
 
   return (
     <div className={s.grid}>
@@ -59,19 +67,22 @@ export default function InfoGrid() {
         />
       </svg>
       <InfoCard
-        title={features[0].title}
-        desc={features[0].desc}
+        title={cards[0].title}
+        desc={cards[0].description}
         img={data.img1.childImageSharp.fluid}
+        btn={cards[0].button}
       />
       <InfoCard
-        title={features[1].title}
-        desc={features[1].desc}
+        title={cards[1].title}
+        desc={cards[1].description}
         img={data.img2.childImageSharp.fluid}
+        btn={cards[0].button}
       />
       <InfoCard
-        title={features[2].title}
-        desc={features[2].desc}
+        title={cards[2].title}
+        desc={cards[2].description}
         img={data.img3.childImageSharp.fluid}
+        btn={cards[0].button}
       />
     </div>
   )

@@ -18,6 +18,7 @@ export default function Navbar({ siteTitle }) {
   const { isOpen, setOpen } = React.useContext(SideBarStateContext)
   const openSideBar = () => {
     setOpen(!isOpen)
+    console.log('open sidebar')
   }
 
   return (
@@ -29,7 +30,7 @@ export default function Navbar({ siteTitle }) {
           </Link>
         </li>
         <li>
-          <button className={s.link} onClick={() => openSideBar()}>
+          <button className={s.btn_openCart} onClick={() => openSideBar()}>
             <FaShoppingBag className={s.icon} />
             <span className={s.counter}>{totalQuantity || 'O'}</span>
           </button>
