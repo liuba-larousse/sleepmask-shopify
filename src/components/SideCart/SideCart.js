@@ -49,18 +49,22 @@ function SideCart() {
   let discountedItem = {}
   let discount = 0
   if (
-    checkout?.lineItems &&
-    checkout?.lineItems.length !== 0 &&
+    checkout &&
+    checkout.lineItems &&
+    checkout &&
+    checkout.lineItems &&
+    checkout.lineItems.length !== 0 &&
     totalQuantity > 1
   ) {
     discountedItem = checkout.lineItems.find(
       item => item.discountAllocations.length > 0
     )
     discount = discountedItem.discountAllocations.map(
-      dicscount => dicscount.allocatedAmount.amount
+      discount => discount.allocatedAmount.amount
     )
+  } else {
+    discount = 0
   }
-
   console.log('discounted item:', discountedItem, 'discount:', discount)
 
   // Adjust qantity of items
@@ -177,7 +181,7 @@ function SideCart() {
       checkout.lineItems &&
       checkout.lineItems.length !== 0 && (
         <>
-          {totalQuantity > 1 ? (
+          {totalQuantity > 0 ? (
             <div className={s.discount}>
               <h3>Your savings </h3>
               <h3>{discount} ,- </h3>
