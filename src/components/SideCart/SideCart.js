@@ -118,38 +118,36 @@ function SideCart() {
   }
 
   const CartUpsale = () => {
-    return (
-      checkout &&
-      checkout.lineItems &&
-      checkout.lineItems
-        .filter(item => item.discountAllocations.length === 0)
-        .map(item => (
-          <div className={s.upsaleWrap}>
-            <div
-              className={
-                totalQuantity % 2 !== 0
-                  ? `${s.upsale} ${s.animation}`
-                  : `${s.upsale}`
-              }
-            >
-              <h3>Get one more {title} to get 50% off</h3>
-              <div className={s.upsaleflex}>
-                <div>
-                  <Img className={s.imageUpsale} fluid={fluid}></Img>
-                </div>
-                <div>
-                  <button
-                    className={`${button_second}  ${s.btn_addOne}`}
-                    onClick={() => addItem(item)}
-                  >
-                    Get discount
-                  </button>
+    return checkout && checkout.lineItems
+      ? checkout.lineItems
+          .filter(item => item.discountAllocations.length === 0)
+          .map(item => (
+            <div className={s.upsaleWrap}>
+              <div
+                className={
+                  totalQuantity % 2 !== 0
+                    ? `${s.upsale} ${s.animation}`
+                    : `${s.upsale}`
+                }
+              >
+                <h3>Get one more {title} to get 50% off</h3>
+                <div className={s.upsaleflex}>
+                  <div>
+                    <Img className={s.imageUpsale} fluid={fluid}></Img>
+                  </div>
+                  <div>
+                    <button
+                      className={`${button_second}  ${s.btn_addOne}`}
+                      onClick={() => addItem(item)}
+                    >
+                      Get discount
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))
-    )
+          ))
+      : null
   }
 
   const CartBody = () => {
