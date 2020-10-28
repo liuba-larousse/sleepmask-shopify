@@ -30,12 +30,11 @@ function SideCart() {
   const { title, images, variants } = product
   const { price } = variants[0]
   const { fluid } = images[0].localFile.childImageSharp
-  console.log('side cart product:', product)
 
   const { checkout, updateLineItem, removeLineItem } = React.useContext(
     CartContext
   )
-  console.log(checkout)
+  console.log('chekcout:', checkout)
 
   //quantity
   let totalQuantity = 0
@@ -65,7 +64,7 @@ function SideCart() {
   } else {
     discount = 0
   }
-  console.log('discounted item:', discountedItem, 'discount:', discount)
+  //   console.log('discounted item:', discountedItem, 'discount:', discount)
 
   // Adjust qantity of items
   const handleAdjustQuantity = ({ quantity, variantId }) => {
@@ -119,27 +118,38 @@ function SideCart() {
   }
 
   const CartUpsale = () => {
-    return checkout?.lineItems
-      ?.filter(item => item.discountAllocations.length === 0)
-      .map(item => (
-        <div className={s.upsale}>
-          <h3>Get one more {title} to get 50% off</h3>
-          <div className={s.upsaleflex}>
-            <div>
-              <Img className={s.imageUpsale} fluid={fluid}></Img>
-            </div>
-            <div>
-              <h3>{title}</h3>
-              <button
-                className={`${button_second}  ${s.btn_addOne}`}
-                onClick={() => addItem(item)}
-              >
-                Add to cart
-              </button>
+    return (
+      checkout &&
+      checkout.lineItems &&
+      checkout.lineItems
+        .filter(item => item.discountAllocations.length === 0)
+        .map(item => (
+          <div className={s.upsaleWrap}>
+            <div
+              className={
+                totalQuantity % 2 !== 0
+                  ? `${s.upsale} ${s.animation}`
+                  : `${s.upsale}`
+              }
+            >
+              <h3>Get one more {title} to get 50% off</h3>
+              <div className={s.upsaleflex}>
+                <div>
+                  <Img className={s.imageUpsale} fluid={fluid}></Img>
+                </div>
+                <div>
+                  <button
+                    className={`${button_second}  ${s.btn_addOne}`}
+                    onClick={() => addItem(item)}
+                  >
+                    Add to cart
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      ))
+        ))
+    )
   }
 
   const CartBody = () => {
@@ -157,15 +167,16 @@ function SideCart() {
               <div>
                 <Img className={s.image} fluid={fluid}></Img>
               </div>
-              <div>
+              <div className={s.body_right}>
                 <h4>{title}</h4>
                 <h4>{price} ,-</h4>
-                <QuantityAdjuster
-                  totalQuantity={totalQuantity}
-                  item={item}
-                  onAdjust={handleAdjustQuantity}
-                />
-                <h4> ${(item.quantity * item.variant.price).toFixed(2)}</h4>
+                <span>
+                  <QuantityAdjuster
+                    totalQuantity={totalQuantity}
+                    item={item}
+                    onAdjust={handleAdjustQuantity}
+                  />
+                </span>
               </div>
             </div>
           </>
@@ -183,7 +194,7 @@ function SideCart() {
         <>
           {totalQuantity > 0 ? (
             <div className={s.discount}>
-              <h3>Your savings </h3>
+              <h3>You just saved : </h3>
               <h3>{discount} ,- </h3>
             </div>
           ) : (
@@ -218,11 +229,12 @@ function SideCart() {
 
   const EmptyCart = () => {
     return (
-      checkout &&
-      checkout.lineItems &&
-      checkout &&
-      checkout.lineItems &&
-      checkout.lineItems.length === 0 && (
+      (checkout &&
+        checkout.lineItems &&
+        checkout &&
+        checkout.lineItems &&
+        checkout.lineItems.length === 0) ||
+      (checkout === null && (
         <div className={s.empty_flex}>
           <button className={s.btn_goback} onClick={() => closeSideBar()}>
             <h4> Continue Shopping</h4>
@@ -230,7 +242,7 @@ function SideCart() {
           <h2>Oops, You cart is empty at this moment</h2>
           <Img fluid={emptyCartImage} className={s.empty_img} alt="emptycart" />
         </div>
-      )
+      ))
     )
   }
 
@@ -239,7 +251,7 @@ function SideCart() {
       <div className={s.overlay}></div>
       <div ref={ref} className={s.container}>
         <CartHeader />
-        {totalQuantity % 2 !== 0 ? <CartUpsale /> : <></>}
+        <CartUpsale />
         <CartBody />
         <CartFooter />
         <EmptyCart />
