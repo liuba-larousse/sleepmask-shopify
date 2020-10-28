@@ -151,97 +151,94 @@ function SideCart() {
   }
 
   const CartBody = () => {
-    return (
-      checkout &&
-      checkout.lineItems &&
-      checkout.lineItems
-        .filter(item => item.discountAllocations.length === 0)
-        .map(item => (
-          <>
-            <div className={s.body} key={item.variant.id}>
-              <button className={s.btn_remove} onClick={() => removeItem(item)}>
-                <TiDelete />
-              </button>
-              <div>
-                <Img className={s.image} fluid={fluid}></Img>
+    return checkout && checkout.lineItems
+      ? checkout.lineItems
+          .filter(item => item.discountAllocations.length === 0)
+          .map(item => (
+            <>
+              <div className={s.body} key={item.variant.id}>
+                <button
+                  className={s.btn_remove}
+                  onClick={() => removeItem(item)}
+                >
+                  <TiDelete />
+                </button>
+                <div>
+                  <Img className={s.image} fluid={fluid}></Img>
+                </div>
+                <div className={s.body_right}>
+                  <h4>{title}</h4>
+                  <h4>{price} ,-</h4>
+                  <span>
+                    <QuantityAdjuster
+                      totalQuantity={totalQuantity}
+                      item={item}
+                      onAdjust={handleAdjustQuantity}
+                    />
+                  </span>
+                </div>
               </div>
-              <div className={s.body_right}>
-                <h4>{title}</h4>
-                <h4>{price} ,-</h4>
-                <span>
-                  <QuantityAdjuster
-                    totalQuantity={totalQuantity}
-                    item={item}
-                    onAdjust={handleAdjustQuantity}
-                  />
-                </span>
-              </div>
-            </div>
-          </>
-        ))
-    )
+            </>
+          ))
+      : null
   }
 
   const CartFooter = () => {
-    return (
-      checkout &&
+    return checkout &&
       checkout.lineItems &&
       checkout &&
       checkout.lineItems &&
-      checkout.lineItems.length !== 0 && (
-        <>
-          {totalQuantity > 0 ? (
-            <div className={s.discount}>
-              <h3>You just saved : </h3>
-              <h3>{discount} ,- </h3>
-            </div>
-          ) : (
-            <></>
-          )}
-          <div className={s.footer}>
-            <h3>Subtotal :</h3>
-            <h3> {checkout?.totalPrice || '0.00'} ,-</h3>
+      checkout.lineItems.length !== 0 ? (
+      <>
+        {totalQuantity > 0 ? (
+          <div className={s.discount}>
+            <h3>You just saved : </h3>
+            <h3>{discount} ,- </h3>
           </div>
-          <div className={s.subfooter}>
-            <button
-              className={`${s.btn_checkout} ${button_flex}`}
-              onClick={handleCheckout}
-            >
-              {loading ? (
-                <Loader
-                  type="Oval"
-                  color="#f6f5f5"
-                  height={25}
-                  width={25}
-                  timeout={3000} //3 secs
-                />
-              ) : (
-                'Checkout'
-              )}
-            </button>
-          </div>
-        </>
-      )
-    )
+        ) : (
+          <></>
+        )}
+        <div className={s.footer}>
+          <h3>Subtotal :</h3>
+          <h3> {checkout?.totalPrice || '0.00'} ,-</h3>
+        </div>
+        <div className={s.subfooter}>
+          <button
+            className={`${s.btn_checkout} ${button_flex}`}
+            onClick={handleCheckout}
+          >
+            {loading ? (
+              <Loader
+                type="Oval"
+                color="#f6f5f5"
+                height={25}
+                width={25}
+                timeout={3000} //3 secs
+              />
+            ) : (
+              'Checkout'
+            )}
+          </button>
+        </div>
+      </>
+    ) : null
   }
 
   const EmptyCart = () => {
-    return (
-      (checkout &&
-        checkout.lineItems &&
-        checkout &&
-        checkout.lineItems &&
-        checkout.lineItems.length === 0) ||
-      (checkout === null && (
-        <div className={s.empty_flex}>
-          <button className={s.btn_goback} onClick={() => closeSideBar()}>
-            <h4> Continue Shopping</h4>
-          </button>
-          <h2>Oops, You cart is empty at this moment</h2>
-          <Img fluid={emptyCartImage} className={s.empty_img} alt="emptycart" />
-        </div>
-      ))
-    )
+    return (checkout &&
+      checkout.lineItems &&
+      checkout &&
+      checkout.lineItems &&
+      checkout.lineItems.length === 0) ||
+      checkout === null ? (
+      <div className={s.empty_flex}>
+        <button className={s.btn_goback} onClick={() => closeSideBar()}>
+          <h4> Continue Shopping</h4>
+        </button>
+        <h2>Oops, You cart is empty at this moment</h2>
+        <Img fluid={emptyCartImage} className={s.empty_img} alt="emptycart" />
+      </div>
+    ) : null
   }
 
   return (
