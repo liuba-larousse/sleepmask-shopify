@@ -142,7 +142,7 @@ function SideCart() {
                     className={`${button_second}  ${s.btn_addOne}`}
                     onClick={() => addItem(item)}
                   >
-                    Add to cart
+                    Get discount
                   </button>
                 </div>
               </div>
