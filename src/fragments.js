@@ -12,6 +12,18 @@ export const PageFields = graphql`
     footerText
   }
 `
+export const CartFields = graphql`
+  fragment CartFields on GoogleSpreadsheetCart {
+    cartEmpty
+    continueShopping
+    yourCart
+    subtotal
+    savings
+    popupText
+    popupBtn
+    items
+  }
+`
 
 export const ProductFields = graphql`
   fragment ProductFields on ShopifyProduct {

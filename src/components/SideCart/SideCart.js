@@ -12,7 +12,7 @@ import SideBarStateContext from '~/context/SideBarStateContext'
 import { QuantityAdjuster } from '../QuantityAdjuster/QuantityAdjuster'
 
 function SideCart() {
-  const { product, file } = useStaticQuery(graphql`
+  const { product, file, fragment } = useStaticQuery(graphql`
     {
       file(relativePath: { eq: "empty.png" }) {
         childImageSharp {
@@ -23,6 +23,9 @@ function SideCart() {
       }
       product: shopifyProduct {
         ...ProductFields
+      }
+      fragment: googleSpreadsheetCart {
+        ...CartFields
       }
     }
   `)
@@ -83,11 +86,7 @@ function SideCart() {
   const [loading, setLoading] = React.useState(false)
 
   const handleCheckout = () => {
-    setLoading(true)
-    setTimeout(() => {
-      window.open(checkout.webUrl)
-      setLoading(false)
-    }, 1500)
+    window.location.replace(checkout.webUrl)
   }
 
   //close cart
@@ -106,9 +105,11 @@ function SideCart() {
     return (
       <>
         <div className={s.header}>
-          <h3>Your Cart</h3>
+          <h3>{fragment.yourCart}</h3>
           <h3>|</h3>
-          <h3>{totalQuantity || '0'} Items</h3>
+          <h3>
+            {totalQuantity || '0'} {fragment.items}
+          </h3>
           <button className={s.btn_close} onClick={() => closeSideBar()}>
             <CgClose />
           </button>
@@ -122,15 +123,15 @@ function SideCart() {
       ? checkout.lineItems
           .filter(item => item.discountAllocations.length === 0)
           .map(item => (
-            <div className={s.upsaleWrap}>
-              <div
-                className={
-                  totalQuantity % 2 !== 0
-                    ? `${s.upsale} ${s.animation}`
-                    : `${s.upsale}`
-                }
-              >
-                <h3>Get one more {title} to get 50% off</h3>
+            <div
+              className={
+                totalQuantity % 2 !== 0
+                  ? `${s.upsaleWrap} ${s.slideDown} `
+                  : s.upsaleWrap
+              }
+            >
+              <div className={s.upsale}>
+                <h3>{fragment.popupText}</h3>
                 <div className={s.upsaleflex}>
                   <div>
                     <Img className={s.imageUpsale} fluid={fluid}></Img>
@@ -140,7 +141,7 @@ function SideCart() {
                       className={`${button_second}  ${s.btn_addOne}`}
                       onClick={() => addItem(item)}
                     >
-                      Get discount
+                      {fragment.popupBtn}
                     </button>
                   </div>
                 </div>
@@ -192,14 +193,14 @@ function SideCart() {
       <>
         {totalQuantity > 0 ? (
           <div className={s.discount}>
-            <h3>You just saved : </h3>
+            <h3>{fragment.savings} </h3>
             <h3>{discount} ,- </h3>
           </div>
         ) : (
           <></>
         )}
         <div className={s.footer}>
-          <h3>Subtotal :</h3>
+          <h3>{fragment.subtotal} :</h3>
           <h3> {checkout?.totalPrice || '0.00'} ,-</h3>
         </div>
         <div className={s.subfooter}>
@@ -233,9 +234,9 @@ function SideCart() {
       checkout === null ? (
       <div className={s.empty_flex}>
         <button className={s.btn_goback} onClick={() => closeSideBar()}>
-          <h4> Continue Shopping</h4>
+          <h4>{fragment.continueShopping}</h4>
         </button>
-        <h2>Oops, You cart is empty at this moment</h2>
+        <h2>{fragment.cartEmpty}</h2>
         <Img fluid={emptyCartImage} className={s.empty_img} alt="emptycart" />
       </div>
     ) : null
@@ -244,6 +245,7 @@ function SideCart() {
   return (
     <section className={isOpen ? `${s.cart}  ${s.isOpen} ` : s.cart}>
       <div className={s.overlay}></div>
+      {/* <iframe name="theFrame" src={checkout.webUrl} title="Checkout"></iframe> */}
       <div ref={ref} className={s.container}>
         <CartHeader />
         <CartUpsale />
