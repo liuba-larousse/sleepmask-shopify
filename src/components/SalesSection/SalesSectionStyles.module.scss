@@ -1,0 +1,97 @@
+@import '~/css/variables.scss';
+
+.container{
+margin-top: 10rem;
+height: fit-content;
+padding:10rem 0;
+background: linear-gradient(30deg, lighten(#28abb9, 10%) 25%, lighten(#00334e, 5%) 100%);
+
+h1{ 
+    text-align: center;
+    color: $clr-main-light;
+    padding-bottom: 2rem;
+}
+}
+
+
+
+.grid{
+    margin-top: 2rem;
+color: $clr-main-light;
+ display: grid;
+ grid-template-columns:1fr ;
+ grid-template-rows: minmax(35rem, fit-content), minmax(40rem, fit-content);
+ grid-template-areas:
+ "left_top"
+ "right_bottom";
+}
+
+.right_bottom{
+    grid-area: right_bottom;
+    display: flex;
+flex-direction: column;
+justify-content: flex-end;
+padding: 2rem;
+}
+
+.left_top{
+    grid-area: left_top;
+    padding: 2rem;
+}
+
+.img{
+    width: 25rem;
+    height: 25rem;
+    border-radius: 40px;
+    box-shadow: $shadow;
+    margin: 0 auto;
+}
+
+.bulletpoint{
+    display: flex;
+    margin: 3rem 0;
+    :first-child{
+        font-size: 3.5rem;
+    }
+    
+    h3{
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-left: 3rem;
+        letter-spacing: 0.1rem;
+    }
+}
+
+.bulletpoint:first-of-type{
+    margin-top:  0;
+}
+
+.line{
+width:100%;
+height: min-content;
+margin-top: 3rem;
+border-bottom: 1px solid $clr-main-light;
+}
+
+.btn_buy{
+    margin-top: 5rem;
+    width: 100%;
+}
+
+
+
+
+@media (min-width: 48em) {
+.grid{
+grid-template-columns:1fr 2fr;
+ grid-template-rows: 1fr;
+ grid-template-areas:
+ "left_top right_bottom"
+
+}
+
+.btn_buy{
+    margin-top: 5rem;
+    width: 27rem;
+}
+}

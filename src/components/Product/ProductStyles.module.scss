@@ -34,7 +34,7 @@
   display: flex;
   flex-direction: column;
   text-align: center;
-
+align-items: center;
   h1 {
     color: $clr-text-dark;
   }
@@ -47,7 +47,9 @@
 
 .price {
   margin-bottom: 1rem;
-
+h2{
+  padding-bottom: 0.5rem;
+}
   h2:nth-child(1) {
     color: red;
   }
@@ -61,7 +63,7 @@
   color: $gold;
   font-size: $font-h2;
   text-align: center;
-  margin-bottom: 1rem;
+  margin: 1rem 0;
   background-color: #fff;
   cursor: pointer;
   width: fit-content;
@@ -82,13 +84,18 @@
 }
 
 .prev,
-.next {
+.next{
   font-size: $font-h2;
   color: $clr-text-grey;
-
-  :hover {
+background-color: white;
+transition: $transition;
+  &:hover {
     color: $clr-text-dark;
   }
+}
+.buttons{
+  margin: 2rem 0;
+
 }
 
 .line {

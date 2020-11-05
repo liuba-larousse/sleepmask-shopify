@@ -12,7 +12,7 @@ export default function InfoCard({ img, title, desc, btn }) {
           <Img className={s.image} fluid={img} />
         </div>
         <div className={s.text_area}>
-          <h2>{title}</h2>
+          <h3>{title}</h3>
           <p>{desc}</p>
           <button
             onClick={() => scrollTo('#product')}

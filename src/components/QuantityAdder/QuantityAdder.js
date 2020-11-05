@@ -6,6 +6,7 @@ import SideBarStateContext from '~/context/SideBarStateContext'
 
 function QuantityAdder({ variantId, text }) {
   const [quantity, setQuantity] = React.useState(1)
+  // const { quantity, setQuantity } = React.useContext(QuantityStateContext)
   const { updateLineItem } = React.useContext(CartContext)
 
   const handleQuantityChange = e => {
@@ -23,8 +24,10 @@ function QuantityAdder({ variantId, text }) {
   return (
     <div className={s.container}>
       <form onSubmit={handleSumbit}>
-        <div>
-          <label htmlFor="quantity">Quantity </label>
+        <div className={s.input}>
+          <label htmlFor="quantity">
+            <h3>Quantity</h3>
+          </label>
           <input
             type="number"
             id="quantity"
@@ -38,7 +41,7 @@ function QuantityAdder({ variantId, text }) {
         <button
           onClick={() => setOpen(!isOpen)}
           type="submit"
-          className={button_flex}
+          className={`${button_flex} ${s.btn_add}`}
         >
           {text}
         </button>

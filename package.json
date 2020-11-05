@@ -55,6 +55,7 @@
     "react-helmet": "^5.2.1",
     "react-icons": "^3.11.0",
     "react-loader-spinner": "^3.1.14",
+    "react-mailchimp-subscribe": "^2.1.0",
     "react-markdown": "^4.3.1",
     "set-value": "^2.0.1",
     "shopify-buy": "^2.11.0",

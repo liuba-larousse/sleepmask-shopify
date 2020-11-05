@@ -1,0 +1,71 @@
+@import '~/css/variables.scss';
+
+.container{
+    width: 100%;
+   min-height: fit-content;
+   height: 10rem;
+   padding: 0.5rem;
+    background-color: lighten($color: $clr-red, $amount: 20%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: -webkit-sticky;
+    position: sticky;
+    cursor: pointer;
+    h1,span{
+        text-align: center;
+        font-size: $font-h3;
+        color: $clr-main-light;
+        
+    }
+    span{
+        transform: rotate(-45deg) ;
+    }
+animation-name: wobble-hor-top;
+  animation-duration: 1s;
+  animation-timing-function: ease;
+  animation-delay: 0s;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-fill-mode: none;
+
+}
+
+@keyframes wobble-hor-top {
+    0%{
+      -webkit-transform: translateX(0%);
+      transform: translateX(0%);
+      -webkit-transform-origin: 50% 50%;
+      transform-origin: 50% 50%;
+    }
+    15%{
+      -webkit-transform: translateX(-30px) rotate(6deg);
+      transform: translateX(-30px) rotate(6deg);
+    }
+    30%{
+      -webkit-transform: translateX(15px) rotate(-6deg);
+      transform: translateX(15px) rotate(-6deg);
+    }
+    45%{
+      -webkit-transform: translateX(-15px) rotate(3.6deg);
+      transform: translateX(-15px) rotate(3.6deg);
+    }
+    60%{
+      -webkit-transform: translateX(9px) rotate(-2.4deg);
+      transform: translateX(9px) rotate(-2.4deg);
+    }
+    75%{
+      -webkit-transform: translateX(-6px) rotate(1.2deg);
+      transform: translateX(-6px) rotate(1.2deg);
+    }
+    100%{
+      -webkit-transform: translateX(0%);
+      transform: translateX(0%);
+      -webkit-transform-origin: 50% 50%;
+      transform-origin: 50% 50%;
+    }
+  }
+
+@media (min-width: 48em) {
+
+  }

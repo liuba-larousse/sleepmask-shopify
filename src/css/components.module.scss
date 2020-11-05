@@ -1,14 +1,15 @@
 @import './variables.scss';
 
 .button_main {
-    width: 27rem;
-    height: 5.5rem;
+    width: 29rem;
+    height: 8rem;
     background-color: $clr-attention;
     color: $clr-main-light;
     font-family: $font-secondary;
     font-size: $font-h4;
     letter-spacing: 0.2rem;
-    text-transform: capitalize;
+    font-weight: 100;
+    text-transform: uppercase;
     border-radius: 60px;
     transition: $transition;
     cursor: pointer;
@@ -21,13 +22,14 @@
 
 .button_flex {
     width: 90%;
-    height: 5.5rem;
+    height: 8rem;
     background-color: $clr-attention;
     color: $clr-main-light;
     font-family: $font-secondary;
     font-size: $font-h4;
     letter-spacing: 0.2rem;
-    text-transform: capitalize;
+    font-weight: 100;
+    text-transform: uppercase;
     border-radius: 60px;
     cursor: pointer;
     transition: $transition;
@@ -38,14 +40,17 @@
 }
 
 .button_second {
-    width: 27rem;
-    height: 5.5rem;
+   min-width: 27rem;
+   width: fit-content;
+   padding: 0 2rem;
+    height: 8rem;
     background-color: $clr-main-accent;
     color: $clr-main-light;
     font-size: $font-h4;
     font-family: $font-secondary;
-    letter-spacing: 0.2rem;
-    text-transform: capitalize;
+    
+    font-weight: 100;
+    text-transform: uppercase;
     border-radius: 60px;
     cursor: pointer;
     transition: $transition;
@@ -53,7 +58,7 @@
     &:hover {
         background-color: white;
         color: $clr-main-accent;
-        border: 2px solid $clr-main-accent;
+        border: 1px solid $clr-main-accent;
     }
 }
 

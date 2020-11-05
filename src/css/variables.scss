@@ -5,7 +5,7 @@ $clr-text-grey: #707070;
 $clr-main-light: #f6f5f5;
 $clr-attention: #89d66b;
 $clr-attention-shade: #52ab30;
-$clr-delete: #ff4949;
+$clr-red: #ff4949;
 $clr-main-accent: #28abb9;
 $clr-main-accent-shade: #69d3de;
 $clr-text-dark: #00334e;
@@ -59,7 +59,6 @@ h3,
 h4,
 h5 {
   font-family: $font-secondary;
-  font-weight: 300;
 }
 
 h1 {

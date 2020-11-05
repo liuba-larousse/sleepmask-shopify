@@ -29,6 +29,7 @@
   top: 2rem;
   color: $clr-text-grey;
   font-weight: 100;
+  font-family: $font-secondary;
 }
 
 .animation {
@@ -205,26 +206,22 @@
 }
 
 .btn_expand {
-  width: 27rem;
-  height: 6rem;
-  border-radius: 80px;
-  border: 1px solid $clr-main-accent;
+  border-bottom:1px solid $clr-main-accent;
   color: $clr-main-accent;
   background-color: white;
   font-size: $font-h3;
+  font-weight: 100;
+  font-family: $font-secondary;
+  text-transform: uppercase;
   margin: 5rem auto 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   cursor: pointer;
   transition: $transition;
 
   &:hover,
   &:focus {
-    border: 1px solid white;
-    color: $clr-main-light;
-    background-color: $clr-main-accent;
+    border-bottom: 1px solid $clr-text-dark;
+    color: $clr-text-dark;
+
   }
 }
 

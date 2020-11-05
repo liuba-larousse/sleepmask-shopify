@@ -11,6 +11,7 @@ import Quote from '../components/Quote/Quote'
 import Accordion from '../components/Accordion/Accordion'
 import Banner from '../components/Banner/Banner'
 import SideCart from '../components/SideCart/SideCart'
+import SalesSection from '../components/SalesSection/SalesSection'
 
 const IndexPage = () => {
   return (
@@ -33,7 +34,7 @@ const IndexPage = () => {
       <div className="wrapper">
         <Accordion />
       </div>
-      {/*<Maillist />*/}
+      <SalesSection />
       <Banner />
     </>
   )

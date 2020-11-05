@@ -20,12 +20,11 @@ export default function Product() {
       }
     `
   )
-  console.log('product:', product)
+
   //values
   const { title, description, variants, images } = product
   const { price, compareAtPrice, shopifyId } = variants[0]
   const variantId = shopifyId
-  console.log(price, compareAtPrice)
 
   //carousel
   const length = product.images.length - 1
@@ -43,11 +42,11 @@ export default function Product() {
       <div className={s.carousel}>
         <Img className={s.image} fluid={fluid} />
         <div className={s.buttons}>
-          <button onClick={() => handlePrevious()}>
-            <HiArrowLeft className={s.prev} />
+          <button className={s.prev} onClick={() => handlePrevious()}>
+            <HiArrowLeft />
           </button>
-          <button onClick={() => handleNext()}>
-            <HiArrowRight className={s.next} />
+          <button className={s.next} onClick={() => handleNext()}>
+            <HiArrowRight />
           </button>
         </div>
 
@@ -63,11 +62,6 @@ export default function Product() {
       </div>
       <div className={s.info}>
         <h1>{title}</h1>
-        <div className={s.price}>
-          <h2>{parseInt(price).toFixed(0)} ,-</h2>
-          <h2>{parseInt(compareAtPrice).toFixed(0)} ,-</h2>
-        </div>
-
         <button onClick={() => scrollTo('#reviews')} className={s.stars}>
           <FaStar />
           <FaStar />
@@ -75,6 +69,10 @@ export default function Product() {
           <FaStar />
           <FaStar />
         </button>
+        <div className={s.price}>
+          <h2>{parseInt(price).toFixed(0)} ,-</h2>
+          <h2>{parseInt(compareAtPrice).toFixed(0)} ,-</h2>
+        </div>
 
         <div className={s.line}></div>
         <QuantityAdder
