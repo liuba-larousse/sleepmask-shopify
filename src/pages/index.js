@@ -12,11 +12,13 @@ import Accordion from '../components/Accordion/Accordion'
 import Banner from '../components/Banner/Banner'
 import SideCart from '../components/SideCart/SideCart'
 import SalesSection from '../components/SalesSection/SalesSection'
+import Modal from '../components/Modal/Modal'
 
 const IndexPage = () => {
   return (
     <>
       <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
+      <Modal />
       <SideCart />
       <Hero />
       <div className="wrapper">

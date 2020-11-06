@@ -25,22 +25,34 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        font-family: $font-secondary;
+        font-size: $font-h4;
+        font-weight: 100;
+    text-transform: uppercase;
     }
 
-    input {
+    input[type=number] {
         width: 10rem;
         height: 5rem;
         font-size: 16px;
         color: $clr-text-black;
-        border: 1px solid $clr-lines;
+        border: 1px solid $clr-main-accent;
         text-align: center;
         outline: none;
         margin-left: 2rem;
+        padding-left: 1rem;
         border-radius: 10px;
+        font-family: $font-secondary;
+        font-weight: 300;
+    text-transform: uppercase;
     }
 
     .btn_add{
         margin-top: 2rem;
 width: 27rem;
+background-color: $clr-green;
+&:hover, :focus{
+    background-color:darken($clr-green, 10%)
+}
     }
 }

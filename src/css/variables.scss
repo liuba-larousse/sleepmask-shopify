@@ -3,8 +3,9 @@
 $clr-lines: #dadada;
 $clr-text-grey: #707070;
 $clr-main-light: #f6f5f5;
-$clr-attention: #89d66b;
-$clr-attention-shade: #52ab30;
+$clr-attention: #f7c767;
+$clr-attention-shade: darken($clr-attention, 10%);
+$clr-green: #7dcc59;
 $clr-red: #ff4949;
 $clr-main-accent: #28abb9;
 $clr-main-accent-shade: #69d3de;
@@ -14,6 +15,8 @@ $background: #145374;
 $gold: #f3c623;
 $gradient: linear-gradient(0deg, #d1ecff 50%, #28abb9 100%);
 $gradient2: linear-gradient(0deg, #28abb9 20%, #00334e 100%);
+$gradient3:linear-gradient(30deg, lighten(#28abb9, 10%) 25%, lighten(#00334e, 5%) 100%);
+$gradient4: linear-gradient(30deg, lighten(#28abb9, 10%) 50%, lighten(#00334e, 5%) 100%);
 $transition: all 0.3s 0s ease;
 /* Fonts */
 

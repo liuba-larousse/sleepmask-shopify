@@ -8,7 +8,7 @@ import Loader from 'react-loader-spinner'
 import { useStaticQuery, graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import CartContext from '~/context/CartContext'
-import SideBarStateContext from '~/context/SideBarStateContext'
+import StateContext from '~/context/StateContext'
 import { QuantityAdjuster } from '../QuantityAdjuster/QuantityAdjuster'
 
 function SideCart() {
@@ -83,14 +83,12 @@ function SideCart() {
     removeLineItem(item.id)
   }
 
-  const [loading, setLoading] = React.useState(false)
-
   const handleCheckout = () => {
     window.location.replace(checkout.webUrl)
   }
 
   //close cart
-  const { isOpen, setOpen } = React.useContext(SideBarStateContext)
+  const { isOpen, setOpen } = React.useContext(StateContext)
 
   const closeSideBar = () => {
     setTimeout(() => {
@@ -138,7 +136,7 @@ function SideCart() {
                   </div>
                   <div>
                     <button
-                      className={`${button_second}  ${s.btn_addOne}`}
+                      className={`${s.btn_addOne} ${button_second} `}
                       onClick={() => addItem(item)}
                     >
                       {fragment.popupBtn}
@@ -208,7 +206,7 @@ function SideCart() {
             className={`${s.btn_checkout} ${button_flex}`}
             onClick={handleCheckout}
           >
-            {loading ? (
+            {/* {loading ? (
               <Loader
                 type="Oval"
                 color="#f6f5f5"
@@ -218,7 +216,7 @@ function SideCart() {
               />
             ) : (
               'Checkout'
-            )}
+            )} */}
           </button>
         </div>
       </>

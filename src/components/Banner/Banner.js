@@ -40,7 +40,7 @@ export default function Banner() {
           >
             <div className={s.newsletter}>
               <label for="FNAME" visible="false"></label>
-              <input
+              {/* <input
                 type="text"
                 id="mce-FNAME"
                 name="FNAME"
@@ -52,7 +52,7 @@ export default function Banner() {
                 id="mce-LNAME"
                 name="LAME"
                 placeholder="last name"
-              ></input>
+              ></input> */}
               <label for="EMAIL" visible="false"></label>
               <input
                 type="email"

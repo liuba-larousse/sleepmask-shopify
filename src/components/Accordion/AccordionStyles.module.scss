@@ -21,8 +21,11 @@
   padding: 0rem 0 1rem 0;
   outline: none;
 
+
   h3 {
     width: 90%;
+    font-family: $font-secondary;
+    font-weight: 300;
   }
 
   &:hover {

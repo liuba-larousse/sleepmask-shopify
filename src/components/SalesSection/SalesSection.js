@@ -5,8 +5,7 @@ import s from './SalesSectionStyles.module.scss'
 import { button_main } from '~/css/components.module.scss'
 import { IoMdCheckmarkCircleOutline } from 'react-icons/io'
 import CartContext from '~/context/CartContext'
-
-import SideBarStateContext from '~/context/SideBarStateContext'
+import StateContext from '~/context/StateContext'
 
 export default function SalesSection() {
   const { file, product } = useStaticQuery(graphql`
@@ -34,7 +33,7 @@ export default function SalesSection() {
   const [quantity, setQuantity] = React.useState(2)
 
   // open navbar on click
-  const { isOpen, setOpen } = React.useContext(SideBarStateContext)
+  const { isOpen, setOpen } = React.useContext(StateContext)
 
   return (
     <section id="sales" className={s.container}>

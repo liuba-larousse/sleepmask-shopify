@@ -5,12 +5,13 @@ import { MdVerifiedUser } from 'react-icons/md'
 import { HiThumbUp } from 'react-icons/hi'
 import { FaStar } from 'react-icons/fa'
 import Img from 'gatsby-image'
+import StateContext from '~/context/StateContext'
 
 const showItems = 3
 let reviews = []
 
 export default function Reviews() {
-  const { data, product } = useStaticQuery(graphql`
+  const { data, product, reviewThumbnails } = useStaticQuery(graphql`
     {
       data: allGoogleSpreadsheetReviews {
         edges {
@@ -27,21 +28,25 @@ export default function Reviews() {
           }
         }
       }
-      product: allShopifyProduct {
+      product: shopifyProduct {
+        ...ProductFields
+      }
+      reviewThumbnails: allFile(
+        filter: { relativeDirectory: { eq: "reviews" } }
+      ) {
         nodes {
-          images {
-            image: localFile {
-              childImageSharp {
-                fluid {
-                  ...GatsbyImageSharpFluid
-                }
-              }
+          childImageSharp {
+            fluid {
+              ...GatsbyImageSharpFluid
             }
           }
         }
       }
     }
   `)
+  //get thumbnails
+  const thumbnails = reviewThumbnails.nodes
+  console.log('thumbnails:', thumbnails)
 
   //showmore
   const { edges } = data
@@ -66,7 +71,8 @@ export default function Reviews() {
   }
 
   //product image
-  const { fluid } = product.nodes[0].images[0].image.childImageSharp
+  // const { fluid } = product.nodes[0].images[0].image.childImageSharp
+  const { fluid } = product.images[0].localFile.childImageSharp
 
   //reviews
   const reviewsDisplayed = reviewsToShow.map((review, index) => {
@@ -130,66 +136,89 @@ export default function Reviews() {
     )
   })
 
-  return (
-    <section id="reviews" className={s.container}>
-      <h1 className={s.title}>Reviews</h1>
-      <div className={s.grid}>
-        <div className={s.left_top_total}>
-          <div className={s.rating}>
-            <div>4.9</div>
-            <div>
-              <FaStar />
-              <FaStar />
-              <FaStar />
-              <FaStar />
-              <FaStar />
-            </div>
-          </div>
-          <p>Based on 120 reviews</p>
-          <div className={s.ratingbox}>
-            <p>5 stars</p>
-            <div className={`${s.box} ${s.stars5}`}>
-              <p>10</p>
-            </div>
-          </div>
-          <div className={s.ratingbox}>
-            <p>4 stars</p>
-            <div className={`${s.box} ${s.stars4}`}>
-              <p>15</p>
-            </div>
-          </div>
-          <div className={s.ratingbox}>
-            <p>3 stars</p>
-            <div className={`${s.box} ${s.stars3}`}>
-              {' '}
-              <p>0</p>
-            </div>
-          </div>
-          <div className={s.ratingbox}>
-            <p>2 stars</p>
-            <div className={`${s.box} ${s.stars3}`}>
-              <p>0</p>{' '}
-            </div>
-          </div>
-          <div className={s.ratingbox}>
-            <p>1 stars</p>
-            <div className={`${s.box} ${s.stars3}`}>
-              <p>0</p>
-            </div>
-          </div>
-        </div>
+  //Modal
 
-        <div className={s.right_bottom_total}>
-          <div className={s.images_title}>
-            <div>100%</div>
-            <p>of reviews recoomend this product</p>
+  const { showing, toggle } = React.useContext(StateContext)
+
+  return (
+    <>
+      <div
+        className={showing ? `${s.modal_overlay} ${s.hidden}` : s.modal_overlay}
+      ></div>
+      <div className={showing ? `${s.modal} ${s.hidden}` : s.modal}>
+        <button onClick={() => toggle()}>close</button>
+      </div>
+      <section id="reviews" className={s.container}>
+        <h1 className={s.title}>Reviews</h1>
+        <div className={s.grid}>
+          <div className={s.left_top_total}>
+            <div className={s.rating}>
+              <div>4.9</div>
+              <div>
+                <FaStar />
+                <FaStar />
+                <FaStar />
+                <FaStar />
+                <FaStar />
+              </div>
+            </div>
+            <p>Based on 120 reviews</p>
+            <div className={s.ratingbox}>
+              <p>5 stars</p>
+              <div className={`${s.box} ${s.stars5}`}>
+                <p>10</p>
+              </div>
+            </div>
+            <div className={s.ratingbox}>
+              <p>4 stars</p>
+              <div className={`${s.box} ${s.stars4}`}>
+                <p>15</p>
+              </div>
+            </div>
+            <div className={s.ratingbox}>
+              <p>3 stars</p>
+              <div className={`${s.box} ${s.stars3}`}>
+                {' '}
+                <p>0</p>
+              </div>
+            </div>
+            <div className={s.ratingbox}>
+              <p>2 stars</p>
+              <div className={`${s.box} ${s.stars3}`}>
+                <p>0</p>{' '}
+              </div>
+            </div>
+            <div className={s.ratingbox}>
+              <p>1 stars</p>
+              <div className={`${s.box} ${s.stars3}`}>
+                <p>0</p>
+              </div>
+            </div>
+          </div>
+
+          <div className={s.right_bottom_total}>
+            <div className={s.images_title}>
+              <div>100%</div>
+              <p>of reviews recoomend this product</p>
+            </div>
+            <div className={s.thumbnail_grid}>
+              {thumbnails.map((each, index) => (
+                <div onClick={() => toggle(index)}>
+                  <Img
+                    className={s.thumbnail}
+                    fluid={each.childImageSharp.fluid}
+                    key={each.childImageSharp.src}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
-      {reviewsDisplayed}
-      <button className={s.btn_expand} onClick={handleShowMore}>
-        Show more
-      </button>
-    </section>
+        {reviewsDisplayed}
+        <button className={s.btn_expand} onClick={handleShowMore}>
+          Show more
+        </button>
+      </section>
+    </>
   )
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import s from './QuantityAdderStyles.module.scss'
 import { button_flex } from '~/css/components.module.scss'
 import CartContext from '~/context/CartContext'
-import SideBarStateContext from '~/context/SideBarStateContext'
+import StateContext from '~/context/StateContext'
 
 function QuantityAdder({ variantId, text }) {
   const [quantity, setQuantity] = React.useState(1)
@@ -19,15 +19,13 @@ function QuantityAdder({ variantId, text }) {
     updateLineItem({ variantId, quantity: parseInt(quantity, 10) })
   }
 
-  const { isOpen, setOpen } = React.useContext(SideBarStateContext)
+  const { isOpen, setOpen } = React.useContext(StateContext)
 
   return (
     <div className={s.container}>
       <form onSubmit={handleSumbit}>
         <div className={s.input}>
-          <label htmlFor="quantity">
-            <h3>Quantity</h3>
-          </label>
+          <label htmlFor="quantity">Quantity</label>
           <input
             type="number"
             id="quantity"

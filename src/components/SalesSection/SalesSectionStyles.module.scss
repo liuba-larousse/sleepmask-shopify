@@ -1,10 +1,11 @@
 @import '~/css/variables.scss';
 
 .container{
+    overflow:hidden;
 margin-top: 10rem;
 height: fit-content;
 padding:10rem 0;
-background: linear-gradient(30deg, lighten(#28abb9, 10%) 25%, lighten(#00334e, 5%) 100%);
+background: $gradient3;
 
 h1{ 
     text-align: center;

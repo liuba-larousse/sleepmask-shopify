@@ -1,7 +1,8 @@
 @import '~/css/variables.scss';
 
 .container {
-  scroll-behavior: smooth;
+  width: 100%;
+  overflow: hidden;
   margin-top: 10rem;
   display: grid;
   grid-template-columns: 1fr;
@@ -19,8 +20,11 @@
 .small_grid {
   display: flex;
   flex-direction: row;
+  max-height: 8rem;
   flex-wrap: wrap;
+  overflow: hidden;
   justify-content: space-evenly;
+ 
 }
 
 .thumbnail {

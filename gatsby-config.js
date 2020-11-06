@@ -29,15 +29,15 @@ module.exports = {
         component: require.resolve(`./src/components/Layout`),
       },
     },
-    // {
-    //   resolve: `gatsby-plugin-manifest`,
-    //   options: {
-    //     name: `gatsby-starter-default`,
-    //     short_name: `starter`,
-    //     start_url: `/`,
-    //     This path is relative to the root of the site.
-    //   },
-    // },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `gatsby-starter-default`,
+        short_name: `starter`,
+        start_url: `/`,
+        // This path is relative to the root of the site.
+      },
+    },
     {
       resolve: `gatsby-source-shopify`,
       options: {
@@ -58,6 +58,7 @@ module.exports = {
         // or `npm run build`. This prints which nodes are being fetched and how
         // much time was required to fetch and process the data.
         // Defaults to true.
+        apiVersion: '2020-07',
         verbose: true,
       },
     },
