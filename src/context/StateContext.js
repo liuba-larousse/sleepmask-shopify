@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 
 const defaultState = {
   isOpen: false,
+  showing: false,
+  index: 0,
 }
 
 const StateContext = React.createContext(defaultState)

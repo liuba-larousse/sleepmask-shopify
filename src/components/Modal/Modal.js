@@ -37,7 +37,7 @@ export default function Modal() {
     index === 0 ? setIndex(length) : setIndex(index - 1)
 
   const { fluid } = thumbnails[index].childImageSharp
-  console.log(fluid)
+  console.log('fluid in modal:', fluid)
   return (
     <>
       <div
