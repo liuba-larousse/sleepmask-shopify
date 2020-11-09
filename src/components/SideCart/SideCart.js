@@ -217,6 +217,7 @@ function SideCart() {
             ) : (
               'Checkout'
             )} */}
+            Checkout
           </button>
         </div>
       </>
