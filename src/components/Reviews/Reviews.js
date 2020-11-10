@@ -145,9 +145,7 @@ export default function Reviews() {
       <div
         className={showing ? `${s.modal_overlay} ${s.hidden}` : s.modal_overlay}
       ></div>
-      <div className={showing ? `${s.modal} ${s.hidden}` : s.modal}>
-        <button onClick={() => toggle()}>close</button>
-      </div>
+      <div className={showing ? `${s.modal} ${s.hidden}` : s.modal}></div>
       <section id="reviews" className={s.container}>
         <h1 className={s.title}>Reviews</h1>
         <div className={s.grid}>

@@ -16,7 +16,7 @@ export default function InfoCard({ img, title, desc, btn }) {
           <p>{desc}</p>
           <button
             onClick={() => scrollTo('#product')}
-            className={button_second}
+            className={`${button_second} ${s.btn_buy}`}
           >
             {btn}
           </button>

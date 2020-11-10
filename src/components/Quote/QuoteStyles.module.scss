@@ -10,15 +10,10 @@ overflow:hidden;
     padding: 5rem;
     width: 100%;
     background: $clr-main-light;
-
+    margin-top: 10rem;
     h1 {
         margin: auto auto;
         color: $clr-text-dark;
     }
 }
 
-@media (min-width: 48em) {
-    .container {
-        margin-top: 10rem;
-    }
-}

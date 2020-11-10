@@ -2,7 +2,6 @@ import { graphql } from 'gatsby'
 
 export const PageFields = graphql`
   fragment PageFields on GoogleSpreadsheetPage {
-    bannerQuote
     btnBannerSection
     btnHeroSection
     btnProductSection
@@ -10,6 +9,17 @@ export const PageFields = graphql`
     heroTitle
     pageQuote
     footerText
+    linkTwo
+    linkThree
+    linkOne
+    featureTwo
+    featureThree
+    featureOne
+    salesBar
+    salesBtn
+    salesSectionTitles
+    subscribe
+    signUpText
   }
 `
 export const CartFields = graphql`

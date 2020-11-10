@@ -3,14 +3,13 @@
 .container{
     width: 100%;
    min-height: fit-content;
-   height: 10rem;
-   padding: 0.5rem;
+   height: 8rem;
     background-color: lighten($color: $clr-red, $amount: 20%);
     display: flex;
     align-items: center;
     justify-content: center;
     position: -webkit-sticky;
-    position: absolute;
+    position: sticky;
     cursor: pointer;
     h1,span{
         text-align: center;

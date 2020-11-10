@@ -15,9 +15,9 @@ export default function Footer() {
   return (
     <footer className={s.footer}>
       <div className={s.links}>
-        <Link className={s.link}>Link 1</Link>
-        <Link className={s.link}>Link 2</Link>
-        <Link className={s.link}>Link 3</Link>
+        <Link className={s.link}>{fragment.linkOne}</Link>
+        <Link className={s.link}>{fragment.linkTwo}</Link>
+        <Link className={s.link}>{fragment.linkThree}</Link>
       </div>
 
       <p>

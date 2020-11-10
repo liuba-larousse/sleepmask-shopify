@@ -8,10 +8,13 @@ import CartContext from '~/context/CartContext'
 import StateContext from '~/context/StateContext'
 
 export default function SalesSection() {
-  const { file, product } = useStaticQuery(graphql`
+  const { file, product, fragment } = useStaticQuery(graphql`
     {
       product: shopifyProduct {
         ...ProductFields
+      }
+      fragment: googleSpreadsheetPage {
+        ...PageFields
       }
       file(relativePath: { eq: "upsale.jpeg" }) {
         childImageSharp {
@@ -37,7 +40,7 @@ export default function SalesSection() {
 
   return (
     <section id="sales" className={s.container}>
-      <h1> Sales Section</h1>
+      <h1>{fragment.salesSectionTitles}</h1>
       <div className={s.grid}>
         <div className={s.left_top}>
           <Img fluid={fluid} className={s.img} />
@@ -45,15 +48,15 @@ export default function SalesSection() {
         <div className={s.right_bottom}>
           <div className={s.bulletpoint}>
             <IoMdCheckmarkCircleOutline />
-            <h3>Bulletpoint 1</h3>
+            <h3>{fragment.featureOne}</h3>
           </div>
           <div className={s.bulletpoint}>
             <IoMdCheckmarkCircleOutline />
-            <h3>Bulletpoint 2</h3>
+            <h3>{fragment.featureTwo}</h3>
           </div>
           <div className={s.bulletpoint}>
             <IoMdCheckmarkCircleOutline />
-            <h3>Bulletpoint 3</h3>
+            <h3>{fragment.featureThree}</h3>
           </div>
           <div className={s.line}></div>
           <button
@@ -68,7 +71,7 @@ export default function SalesSection() {
               console.log('quantity after:', quantity)
             }}
           >
-            Get the deal
+            {fragment.salesBtn}
           </button>
         </div>
       </div>

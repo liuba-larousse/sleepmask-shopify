@@ -2,11 +2,20 @@ import React from 'react'
 import s from './SalesbarStyles.module.scss'
 import scrollTo from 'gatsby-plugin-smoothscroll'
 import { FaRegHandPointer } from 'react-icons/fa'
+import { graphql, useStaticQuery } from 'gatsby'
 
 export default function SalesBar() {
+  const { fragment } = useStaticQuery(graphql`
+    {
+      fragment: googleSpreadsheetPage {
+        ...PageFields
+      }
+    }
+  `)
+
   return (
     <div className={s.container} onClick={() => scrollTo('#sales')}>
-      <h1>I am a sales pitch. Buy 1 Mask and get 50% off second Mask. </h1>
+      <h1>{fragment.salesBar}</h1>
       <span>
         <FaRegHandPointer />
       </span>

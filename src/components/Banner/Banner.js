@@ -26,9 +26,6 @@ export default function Banner() {
       <BackgroundImage className={s.image} fluid={fluid}>
         <div className={s.overlay}></div>
         <div className={s.container}>
-          <h1>{fragment.bannerQuote}</h1>
-          <h2>Sign up for newsletter today:</h2>
-
           <form
             action="https://sovemykt.us2.list-manage.com/subscribe/post?u=fa8e66857cb1b20aeee5ce88a&amp;id=caab10f1f1"
             method="post"
@@ -39,20 +36,8 @@ export default function Banner() {
             novalidate
           >
             <div className={s.newsletter}>
+              <h2>{fragment.signUpText}</h2>
               <label for="FNAME" visible="false"></label>
-              {/* <input
-                type="text"
-                id="mce-FNAME"
-                name="FNAME"
-                placeholder="first name"
-              ></input>
-              <label for="LNAME" visible="false"></label>
-              <input
-                type="text"
-                id="mce-LNAME"
-                name="LAME"
-                placeholder="last name"
-              ></input> */}
               <label for="EMAIL" visible="false"></label>
               <input
                 type="email"
@@ -68,7 +53,7 @@ export default function Banner() {
                 className={button_second}
                 type="submit"
                 value="Subscribe"
-                name="subscribe"
+                name={fragment.subscribe}
                 id="mc-embedded-subscribe"
               ></input>
             </div>

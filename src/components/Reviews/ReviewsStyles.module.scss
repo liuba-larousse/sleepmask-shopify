@@ -1,7 +1,7 @@
 @import '~/css/variables.scss';
 
 .container {
-  margin-top: 10rem;
+  margin-top: 5rem;
   display: flex;
   flex-direction: column;
 }
@@ -215,7 +215,7 @@
   font-weight: 100;
   font-family: $font-secondary;
   text-transform: uppercase;
-  margin: 5rem auto 0 auto;
+  margin: 2rem auto 0 auto;
   cursor: pointer;
   transition: $transition;
 

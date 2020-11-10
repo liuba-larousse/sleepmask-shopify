@@ -30,14 +30,14 @@ export default function Modal() {
   //carousel
   const length = thumbnails.length - 1
   //   const [index, setIndex] = React.useState(0)
-  console.log('index:', index)
+
   const handleNext = () =>
     index === length ? setIndex(0) : setIndex(index + 1)
   const handlePrevious = () =>
     index === 0 ? setIndex(length) : setIndex(index - 1)
 
   const { fluid } = thumbnails[index].childImageSharp
-  console.log('fluid in modal:', fluid)
+
   return (
     <>
       <div
@@ -54,7 +54,9 @@ export default function Modal() {
           <button className={s.btn_next} onClick={() => handleNext()}>
             <HiArrowRight />
           </button>
-          <Img className={s.thumbnail} fluid={fluid} />
+          <div className={s.thumbnail}>
+            <Img fluid={fluid} />
+          </div>
         </div>
       </div>
     </>
