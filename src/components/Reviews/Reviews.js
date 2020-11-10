@@ -46,7 +46,6 @@ export default function Reviews() {
   `)
   //get thumbnails
   const thumbnails = reviewThumbnails.nodes
-  console.log('thumbnails:', thumbnails)
 
   //showmore
   const { edges } = data

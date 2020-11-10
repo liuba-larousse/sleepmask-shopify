@@ -4,7 +4,6 @@ import { FaPlusCircle, FaMinusCircle } from 'react-icons/fa'
 
 function QuantityAdjuster({ item, onAdjust, totalQuantity }) {
   const { quantity } = item
-  console.log('product quantity', quantity)
 
   const handleDecrementQuantity = () => {
     onAdjust({ variantId: item.variant.id, quantity: -1 })

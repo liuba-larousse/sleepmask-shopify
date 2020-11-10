@@ -37,7 +37,7 @@ function SideCart() {
   const { checkout, updateLineItem, removeLineItem } = React.useContext(
     CartContext
   )
-  console.log('chekcout:', checkout)
+  console.log('checkout:', checkout)
 
   //quantity
   let totalQuantity = 0
@@ -46,6 +46,20 @@ function SideCart() {
       totalQuantity = totalQuantity + lineItem.quantity
     })
   }
+
+  //loading
+  const [isLoading, setLoading] = React.useState(true)
+  const loadProducts = async () => {
+    if (checkout) {
+      const products = await checkout.lineItems
+      console.log('loading products')
+      console.log('products:', products)
+    }
+  }
+  React.useEffect(() => {
+    loadProducts()
+    setLoading(false)
+  }, [checkout])
 
   //   discountedItem
   let discountedItem = {}
@@ -246,11 +260,17 @@ function SideCart() {
       <div className={s.overlay}></div>
       {/* <iframe name="theFrame" src={checkout.webUrl} title="Checkout"></iframe> */}
       <div ref={ref} className={s.container}>
-        <CartHeader />
-        <CartUpsale />
-        <CartBody />
-        <CartFooter />
-        <EmptyCart />
+        {isLoading ? (
+          <div>is loading...</div>
+        ) : (
+          <>
+            <CartHeader />
+            <CartUpsale />
+            <CartBody />
+            <CartFooter />
+            <EmptyCart />
+          </>
+        )}
       </div>
     </section>
   )

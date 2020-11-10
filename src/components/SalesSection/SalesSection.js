@@ -30,7 +30,6 @@ export default function SalesSection() {
   const { fluid } = file.childImageSharp
 
   const { updateLineItem, checkout } = React.useContext(CartContext)
-  console.log(checkout)
 
   // const { quantity, setQuantity } = React.useContext(QuantityStateContext)
   const [quantity, setQuantity] = React.useState(2)
