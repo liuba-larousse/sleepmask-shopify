@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 
 const defaultState = {
   isOpen: false,
@@ -32,4 +33,8 @@ export function StateContextProvider({ children }) {
       {children}
     </StateContext.Provider>
   )
+}
+
+StateContextProvider.propTypes = {
+  children: PropTypes.object,
 }

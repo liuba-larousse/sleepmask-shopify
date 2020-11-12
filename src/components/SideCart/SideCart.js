@@ -39,14 +39,34 @@ function SideCart() {
     CartContext
   )
   console.log('checkout:', checkout)
+  console.log('line items:', checkout.lineItems)
+
+  // const moreThanOneItemInCart =
+  //   checkout &&
+  //   checkout.lineItems &&
+  //   checkout &&
+  //   checkout.lineItems &&
+  //   checkout.lineItems.length !== 0
+
+  // const zeroItemsInCart =
+  //   checkout &&
+  //   checkout.lineItems &&
+  //   checkout &&
+  //   checkout.lineItems &&
+  //   checkout.lineItems.length === 0
+
+  const isCheckout = checkout && checkout.lineItems
 
   //quantity
   let totalQuantity = 0
   if (checkout) {
     checkout.lineItems.forEach(lineItem => {
       totalQuantity = totalQuantity + lineItem.quantity
+      console.log('lineItem quantity:', lineItem.quantity)
     })
   }
+
+  console.log('total quantity:', totalQuantity)
 
   //loading
   const [isLoading, setLoading] = React.useState(true)
@@ -55,8 +75,6 @@ function SideCart() {
     async function loadCart() {
       if (checkout) {
         const products = await checkout.lineItems
-        console.log('loading products')
-        console.log('products:', products)
       }
     }
     loadCart()
@@ -66,14 +84,7 @@ function SideCart() {
   //   discountedItem
   let discountedItem = {}
   let discount = 0
-  if (
-    checkout &&
-    checkout.lineItems &&
-    checkout &&
-    checkout.lineItems &&
-    checkout.lineItems.length !== 0 &&
-    totalQuantity > 1
-  ) {
+  if (isCheckout && totalQuantity > 1) {
     discountedItem = checkout.lineItems.find(
       item => item.discountAllocations.length > 0
     )
@@ -137,74 +148,66 @@ function SideCart() {
   }
 
   const CartUpsale = () => {
-    return checkout && checkout.lineItems
-      ? checkout.lineItems
-          .filter(item => item.discountAllocations.length === 0)
-          .map(item =>
-            totalQuantity % 2 !== 0 ? (
-              <SlideDown className={'my - dropdown - slidedown'}>
-                <div className={s.upsale}>
-                  <h3>{fragment.popupText}</h3>
-                  <div className={s.upsaleflex}>
-                    <div>
-                      <Img className={s.imageUpsale} fluid={fluid}></Img>
-                    </div>
-                    <div>
-                      <button
-                        className={`${s.btn_addOne} ${button_second} `}
-                        onClick={() => addItem(item)}
-                      >
-                        {fragment.popupBtn}
-                      </button>
-                    </div>
-                  </div>
+    return checkout.lineItems
+      .filter(item => item.discountAllocations.length === 0)
+      .map(item =>
+        totalQuantity % 2 !== 0 ? (
+          <SlideDown className={'my - dropdown - slidedown'}>
+            <div className={s.upsale}>
+              <h3>{fragment.popupText}</h3>
+              <div className={s.upsaleflex}>
+                <div>
+                  <Img className={s.imageUpsale} fluid={fluid}></Img>
                 </div>
-              </SlideDown>
-            ) : null
-          )
-      : null
+                <div>
+                  <button
+                    className={`${s.btn_addOne} ${button_second} `}
+                    onClick={() => addItem(item)}
+                  >
+                    {fragment.popupBtn}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </SlideDown>
+        ) : null
+      )
   }
 
   const CartBody = () => {
-    return checkout && checkout.lineItems
-      ? checkout.lineItems
-          .filter(item => item.discountAllocations.length === 0)
-          .map(item => (
-            <>
-              <div className={s.body} key={item.variant.id}>
-                <button
-                  className={s.btn_remove}
-                  onClick={() => removeItem(item)}
-                  aria-label="remove"
-                >
-                  <TiDelete />
-                </button>
-                <div>
-                  <Img className={s.image} fluid={fluid}></Img>
-                </div>
-                <div className={s.body_right}>
-                  <h4>{title}</h4>
-                  <h4>{price} ,-</h4>
-                  <span>
-                    <QuantityAdjuster
-                      totalQuantity={totalQuantity}
-                      item={item}
-                      onAdjust={handleAdjustQuantity}
-                    />
-                  </span>
-                </div>
-              </div>
-            </>
-          ))
-      : null
+    return checkout.lineItems
+      .filter(item => item.discountAllocations.length === 0)
+      .map(item => (
+        <>
+          <div className={s.body} key={item.variant.id}>
+            <button
+              className={s.btn_remove}
+              onClick={() => removeItem(item)}
+              aria-label="remove"
+            >
+              <TiDelete />
+            </button>
+            <div>
+              <Img className={s.image} fluid={fluid}></Img>
+            </div>
+            <div className={s.body_right}>
+              <h4>{title}</h4>
+              <h4>{price} ,-</h4>
+              <span>
+                <QuantityAdjuster
+                  totalQuantity={totalQuantity}
+                  item={item}
+                  onAdjust={handleAdjustQuantity}
+                />
+              </span>
+            </div>
+          </div>
+        </>
+      ))
   }
 
   const CartFooter = () => {
-    return checkout &&
-      checkout.lineItems &&
-      checkout &&
-      checkout.lineItems &&
-      checkout.lineItems.length !== 0 ? (
+    return (
       <>
         {totalQuantity > 0 ? (
           <div className={s.discount}>
@@ -216,7 +219,7 @@ function SideCart() {
         )}
         <div className={s.footer}>
           <h3>{fragment.subtotal} :</h3>
-          <h3> {checkout?.totalPrice || '0.00'} ,-</h3>
+          <h3> {(isCheckout && checkout.totalPrice) || '0.00'} ,-</h3>
         </div>
         <div className={s.subfooter}>
           <button
@@ -227,15 +230,11 @@ function SideCart() {
           </button>
         </div>
       </>
-    ) : null
+    )
   }
 
   const EmptyCart = () => {
-    return checkout &&
-      checkout.lineItems &&
-      checkout &&
-      checkout.lineItems &&
-      checkout.lineItems.length === 0 ? (
+    return (
       <div className={s.empty_flex}>
         <button className={s.btn_goback} onClick={() => closeSideBar()}>
           <h4>{fragment.continueShopping}</h4>
@@ -243,7 +242,7 @@ function SideCart() {
         <h2>{fragment.cartEmpty}</h2>
         <Img fluid={emptyCartImage} className={s.empty_img} alt="emptycart" />
       </div>
-    ) : null
+    )
   }
 
   return (
@@ -251,16 +250,17 @@ function SideCart() {
       <div className={s.overlay}></div>
 
       <div ref={ref} className={s.container}>
+        <CartHeader />
         {isLoading ? (
           <div>is loading...</div>
-        ) : (
+        ) : isCheckout && totalQuantity > 0 ? (
           <>
-            <CartHeader />
             <CartUpsale />
             <CartBody />
             <CartFooter />
-            <EmptyCart />
           </>
+        ) : (
+          <EmptyCart />
         )}
       </div>
     </section>
@@ -269,7 +269,7 @@ function SideCart() {
 
 export default SideCart
 
-// Hook
+// Close cart on click outside of cart
 function useOnClickOutside(ref, handler) {
   React.useEffect(() => {
     const listener = event => {

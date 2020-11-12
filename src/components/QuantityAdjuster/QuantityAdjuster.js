@@ -14,11 +14,19 @@ function QuantityAdjuster({ item, onAdjust, totalQuantity }) {
 
   return (
     <div className={s.container}>
-      <button className={s.btn_adjust} onClick={handleDecrementQuantity}>
+      <button
+        className={s.btn_adjust}
+        onClick={handleDecrementQuantity}
+        aria-label="add one"
+      >
         <FaMinusCircle />
       </button>
       <div>{totalQuantity}</div>
-      <button className={s.btn_adjust} onClick={handleIncrementQuantity}>
+      <button
+        className={s.btn_adjust}
+        onClick={handleIncrementQuantity}
+        aria-label="remove one"
+      >
         <FaPlusCircle />
       </button>
     </div>

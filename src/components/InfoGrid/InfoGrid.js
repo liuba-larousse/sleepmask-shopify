@@ -76,13 +76,13 @@ export default function InfoGrid() {
         title={cards[1].title}
         desc={cards[1].description}
         img={data.img2.childImageSharp.fluid}
-        btn={cards[0].button}
+        btn={cards[1].button}
       />
       <InfoCard
         title={cards[2].title}
         desc={cards[2].description}
         img={data.img3.childImageSharp.fluid}
-        btn={cards[0].button}
+        btn={cards[2].button}
       />
     </div>
   )

@@ -37,7 +37,7 @@ export default function Hero() {
                   onClick={() => scrollTo('#product')}
                   className={`${s.button} ${button_main}`}
                 >
-                  {data.fragment.btnBannerSection}
+                  {data.fragment.btnHeroSection}
                 </button>
               </div>
             </BackgroundImage>
