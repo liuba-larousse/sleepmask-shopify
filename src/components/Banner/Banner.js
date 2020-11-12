@@ -31,23 +31,22 @@ export default function Banner() {
             method="post"
             // id="mc-embedded-subscribe-form"
             name="mc-embedded-subscribe-form"
-            class="validate"
+            className="validate"
             target="_blank"
-            novalidate
+            noValidate
           >
             <div className={s.newsletter}>
               <h2>{fragment.signUpText}</h2>
-              <label for="FNAME" visible="false"></label>
-              <label for="EMAIL" visible="false"></label>
+              <label htmlFor="EMAIL" visible="false"></label>
               <input
                 type="email"
                 id="mce-EMAIL"
                 name="EMAIL"
                 placeholder="email@gmail.com"
               ></input>
-              <div id="mce-responses" class="clear">
-                <div class="response" id="mce-error-response"></div>
-                <div class="response" id="mce-success-response"></div>
+              <div id="mce-responses" className="clear">
+                <div className="response" id="mce-error-response"></div>
+                <div className="response" id="mce-success-response"></div>
               </div>
               <input
                 className={button_second}

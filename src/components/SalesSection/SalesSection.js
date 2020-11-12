@@ -29,7 +29,7 @@ export default function SalesSection() {
   const variantId = shopifyId
   const { fluid } = file.childImageSharp
 
-  const { updateLineItem, checkout } = React.useContext(CartContext)
+  const { updateLineItem } = React.useContext(CartContext)
 
   // const { quantity, setQuantity } = React.useContext(QuantityStateContext)
   const [quantity, setQuantity] = React.useState(2)

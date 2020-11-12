@@ -1,15 +1,13 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import CartContext from '~/context/CartContext'
 import s from './NavbarStyles.module.scss'
-import { Link } from 'gatsby'
 import Img from 'gatsby-image'
 import { FaShoppingBag } from 'react-icons/fa'
 import StateContext from '~/context/StateContext'
 import SalesBar from '../SalesBar/SalesBar'
 import { useStaticQuery, graphql } from 'gatsby'
 
-export default function Navbar({ siteTitle }) {
+export default function Navbar() {
   const { checkout } = React.useContext(CartContext)
   let totalQuantity = 0
   if (checkout) {

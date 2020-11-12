@@ -215,28 +215,7 @@
 
 //Upsale
 
-.upsaleWrap {
-    height: 0rem;
-    overflow: hidden;
-    transition: all 1s ease-in;
-}
-
-.upsaleWrap.slideDown {
-    height: 20rem;
-    -webkit-animation: flip-scale-up-hor 0.5s linear both;
-    animation: scale-up-ver-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-    @keyframes scale-up-ver-center {
-        0% {
-          transform: scaleY(0.4);
-        }
-        100% {
-          transform: scaleY(1);
-        }}
-}
-
-
 .upsale {
-    // background-color: #affd90;
     background: $gradient3;
     width: 90%;
     margin: 0 auto;
@@ -257,6 +236,14 @@
         text-transform: uppercase;
         font-weight: 300;
     }
+}
+.react-slidedown.my-dropdown-slidedown {
+    transition-duration: 0.7s;
+    transition-timing-function: cubic-bezier(0.1, 0.7, 1.0, 0.1);
+}
+.react-slidedown {
+    transition-duration: .5s;
+    transition-timing-function: ease-in-out;
 }
 
 .upsale::before {

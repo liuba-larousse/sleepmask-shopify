@@ -99,8 +99,15 @@ margin-top: 10rem;
 width: 30rem;
 }
 
-
 @media (min-width: 48em) {
+    .image {
+        height: 35rem;
+          width: 35rem;
+      }
+}
+
+
+@media (min-width: 62em) {
     .container {
         display: grid;
         min-height: 50rem;
@@ -120,19 +127,12 @@ width: 30rem;
         grid-area: text;
         align-items: center;
         justify-content: center;
-       p{text-align: justify;}
+      
     }
     
-
-    .box {
-        height: 50rem;
-        width: 50rem;
-        transform: translate(-5rem, 5rem);
-    }
-
     .image {
-        height: 50rem;
-        width: 50rem;
+      height: 40rem;
+        width: 40rem;
     }
 
 }

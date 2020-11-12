@@ -1,10 +1,9 @@
 import React from 'react'
 import s from './QuantityAdjusterStyles.module.scss'
 import { FaPlusCircle, FaMinusCircle } from 'react-icons/fa'
+import PropTypes from 'prop-types'
 
 function QuantityAdjuster({ item, onAdjust, totalQuantity }) {
-  const { quantity } = item
-
   const handleDecrementQuantity = () => {
     onAdjust({ variantId: item.variant.id, quantity: -1 })
   }
@@ -27,3 +26,10 @@ function QuantityAdjuster({ item, onAdjust, totalQuantity }) {
 }
 
 export { QuantityAdjuster }
+
+QuantityAdjuster.propTypes = {
+  item: PropTypes.object,
+  variantId: PropTypes.string,
+  onAdjust: PropTypes.object,
+  totalQuantity: PropTypes.number,
+}

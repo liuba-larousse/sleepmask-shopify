@@ -3,13 +3,18 @@ import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
 
-function SEO({ description, lang, meta, keywords, title }) {
+function SEO({ description, lang, meta, keywords, title, url, image, author }) {
   return (
     <StaticQuery
       query={detailsQuery}
       render={data => {
         const metaDescription =
           description || data.site.siteMetadata.description
+        const metaTitle = title || data.site.siteMetadata.title
+        const metaAuthor = author || data.site.siteMetadata.author
+        const metaUrl = url || data.site.siteMetadata.url
+        const metaImage = image || data.site.siteMetadata.image
+        const metaKeywords = keywords || ['snooze-pro', 'sleep-mask']
         return (
           <Helmet
             htmlAttributes={{
@@ -23,6 +28,18 @@ function SEO({ description, lang, meta, keywords, title }) {
                 content: metaDescription,
               },
               {
+                name: `title`,
+                content: metaTitle,
+              },
+              {
+                name: `Author`,
+                content: metaAuthor,
+              },
+              {
+                name: `Url`,
+                content: metaUrl,
+              },
+              {
                 property: `og:title`,
                 content: title,
               },
@@ -33,6 +50,10 @@ function SEO({ description, lang, meta, keywords, title }) {
               {
                 property: `og:type`,
                 content: `website`,
+              },
+              {
+                property: `og:url`,
+                content: `metaUrl`,
               },
             ]
               .concat(
@@ -74,6 +95,8 @@ const detailsQuery = graphql`
         title
         description
         author
+        url
+        image
       }
     }
   }

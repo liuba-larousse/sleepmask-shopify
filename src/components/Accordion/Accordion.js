@@ -38,9 +38,9 @@ export default function Accordion() {
         >
           <h3>{item.question}</h3>
           {isOpen === item.id ? (
-            <FaMinus className={s.icon} />
+            <FaMinus className={s.icon} aria-label="open" />
           ) : (
-            <FaPlus className={s.icon} />
+            <FaPlus className={s.icon} aria-label="close" />
           )}
         </div>
         <div

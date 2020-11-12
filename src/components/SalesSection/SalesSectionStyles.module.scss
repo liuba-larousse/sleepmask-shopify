@@ -9,6 +9,8 @@ padding:10rem 0;
 background: $gradient3;
 
 h1{ 
+    width: 90%;
+    margin: 0 auto;
     text-align: center;
     color: $clr-attention;
     padding-bottom: 2rem;
@@ -93,5 +95,11 @@ grid-template-columns:1fr 2fr;
 .btn_buy{
     margin-top: 5rem;
     width: 27rem;
+}
+
+.container{
+    h1{
+width: 80%;
+    }
 }
 }

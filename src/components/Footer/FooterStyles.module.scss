@@ -31,14 +31,26 @@ font-size: $font-p;
 font-weight: 100;
 display: flex;
 width: 95%;
-justify-content: space-around;
+justify-content: center;
 cursor: pointer;
+
 .link{
     transition: $transition;
     &:hover, :focus{
         text-decoration: underline;
     }
 }
+}
+.link:nth-child(n+1){
+    margin-right: 1.5rem;
+}
+.link:nth-child(n+1)::after{
+    margin-left: 1.5rem;
+    content:"|"
+}
+.link:last-child::after{
+    margin-left: 1.5rem;
+    content:""
 }
 
 

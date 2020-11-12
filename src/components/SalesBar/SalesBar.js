@@ -14,7 +14,13 @@ export default function SalesBar() {
   `)
 
   return (
-    <div className={s.container} onClick={() => scrollTo('#sales')}>
+    <div
+      className={s.container}
+      onClick={() => scrollTo('#sales')}
+      onKeyDown={() => scrollTo('#sales')}
+      role="button"
+      tabIndex="0"
+    >
       <h1>{fragment.salesBar}</h1>
       <span>
         <FaRegHandPointer />

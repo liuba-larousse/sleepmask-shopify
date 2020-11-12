@@ -200,7 +200,13 @@ export default function Reviews() {
             </div>
             <div className={s.thumbnail_grid}>
               {thumbnails.map((each, index) => (
-                <div onClick={() => toggle(index)}>
+                <div
+                  key={index}
+                  onClick={() => toggle(index)}
+                  onKeyDown={() => toggle(index)}
+                  role="button"
+                  tabIndex="0"
+                >
                   <Img
                     className={s.thumbnail}
                     fluid={each.childImageSharp.fluid}

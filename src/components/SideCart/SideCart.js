@@ -4,12 +4,13 @@ import s from './SideCartStyles.module.scss'
 import { button_flex, button_second } from '~/css/components.module.scss'
 import { TiDelete } from 'react-icons/ti'
 import { CgClose } from 'react-icons/cg'
-import Loader from 'react-loader-spinner'
 import { useStaticQuery, graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import CartContext from '~/context/CartContext'
 import StateContext from '~/context/StateContext'
 import { QuantityAdjuster } from '../QuantityAdjuster/QuantityAdjuster'
+import { SlideDown } from 'react-slidedown'
+import 'react-slidedown/lib/slidedown.css'
 
 function SideCart() {
   const { product, file, fragment } = useStaticQuery(graphql`
@@ -49,15 +50,16 @@ function SideCart() {
 
   //loading
   const [isLoading, setLoading] = React.useState(true)
-  const loadProducts = async () => {
-    if (checkout) {
-      const products = await checkout.lineItems
-      console.log('loading products')
-      console.log('products:', products)
-    }
-  }
+
   React.useEffect(() => {
-    loadProducts()
+    async function loadCart() {
+      if (checkout) {
+        const products = await checkout.lineItems
+        console.log('loading products')
+        console.log('products:', products)
+      }
+    }
+    loadCart()
     setLoading(false)
   }, [checkout])
 
@@ -98,7 +100,7 @@ function SideCart() {
   }
 
   const handleCheckout = () => {
-    window.location.replace(checkout.webUrl)
+    window.location.assign(checkout.webUrl)
   }
 
   //close cart
@@ -122,7 +124,11 @@ function SideCart() {
           <h3>
             {totalQuantity || '0'} {fragment.items}
           </h3>
-          <button className={s.btn_close} onClick={() => closeSideBar()}>
+          <button
+            className={s.btn_close}
+            onClick={() => closeSideBar()}
+            aria-label="close"
+          >
             <CgClose />
           </button>
         </div>
@@ -134,32 +140,28 @@ function SideCart() {
     return checkout && checkout.lineItems
       ? checkout.lineItems
           .filter(item => item.discountAllocations.length === 0)
-          .map(item => (
-            <div
-              className={
-                totalQuantity % 2 !== 0
-                  ? `${s.upsaleWrap} ${s.slideDown} `
-                  : s.upsaleWrap
-              }
-            >
-              <div className={s.upsale}>
-                <h3>{fragment.popupText}</h3>
-                <div className={s.upsaleflex}>
-                  <div>
-                    <Img className={s.imageUpsale} fluid={fluid}></Img>
-                  </div>
-                  <div>
-                    <button
-                      className={`${s.btn_addOne} ${button_second} `}
-                      onClick={() => addItem(item)}
-                    >
-                      {fragment.popupBtn}
-                    </button>
+          .map(item =>
+            totalQuantity % 2 !== 0 ? (
+              <SlideDown className={'my - dropdown - slidedown'}>
+                <div className={s.upsale}>
+                  <h3>{fragment.popupText}</h3>
+                  <div className={s.upsaleflex}>
+                    <div>
+                      <Img className={s.imageUpsale} fluid={fluid}></Img>
+                    </div>
+                    <div>
+                      <button
+                        className={`${s.btn_addOne} ${button_second} `}
+                        onClick={() => addItem(item)}
+                      >
+                        {fragment.popupBtn}
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          ))
+              </SlideDown>
+            ) : null
+          )
       : null
   }
 
@@ -173,6 +175,7 @@ function SideCart() {
                 <button
                   className={s.btn_remove}
                   onClick={() => removeItem(item)}
+                  aria-label="remove"
                 >
                   <TiDelete />
                 </button>
@@ -220,17 +223,6 @@ function SideCart() {
             className={`${s.btn_checkout} ${button_flex}`}
             onClick={handleCheckout}
           >
-            {/* {loading ? (
-              <Loader
-                type="Oval"
-                color="#f6f5f5"
-                height={25}
-                width={25}
-                timeout={3000} //3 secs
-              />
-            ) : (
-              'Checkout'
-            )} */}
             Checkout
           </button>
         </div>
@@ -239,12 +231,11 @@ function SideCart() {
   }
 
   const EmptyCart = () => {
-    return (checkout &&
+    return checkout &&
       checkout.lineItems &&
       checkout &&
       checkout.lineItems &&
-      checkout.lineItems.length === 0) ||
-      checkout === null ? (
+      checkout.lineItems.length === 0 ? (
       <div className={s.empty_flex}>
         <button className={s.btn_goback} onClick={() => closeSideBar()}>
           <h4>{fragment.continueShopping}</h4>
@@ -258,7 +249,7 @@ function SideCart() {
   return (
     <section className={isOpen ? `${s.cart}  ${s.isOpen} ` : s.cart}>
       <div className={s.overlay}></div>
-      {/* <iframe name="theFrame" src={checkout.webUrl} title="Checkout"></iframe> */}
+
       <div ref={ref} className={s.container}>
         {isLoading ? (
           <div>is loading...</div>
