@@ -58,18 +58,18 @@ export function CartContextProvider({ children }) {
     if (lineItemVariant) {
       const newQuantity = lineItemVariant.quantity + quantity
 
-      if (newQuantity) {
-        newCheckout = await client.checkout.updateLineItems(newCheckout.id, [
-          {
-            id: lineItemVariant.id,
-            quantity: newQuantity,
-          },
-        ])
-      } else {
-        newCheckout = await client.checkout.removeLineItems(newCheckout.id, [
-          lineItemVariant.id,
-        ])
-      }
+      // if (newQuantity) {
+      newCheckout = await client.checkout.updateLineItems(newCheckout.id, [
+        {
+          id: lineItemVariant.id,
+          quantity: newQuantity,
+        },
+      ])
+      // } else {
+      //   newCheckout = await client.checkout.removeLineItems(newCheckout.id, [
+      //     lineItemVariant.id,
+      //   ])
+      // }
     } else {
       newCheckout = await client.checkout.addLineItems(newCheckout.id, [
         {

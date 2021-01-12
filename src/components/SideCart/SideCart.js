@@ -39,7 +39,6 @@ function SideCart() {
     CartContext
   )
   console.log('checkout:', checkout)
-  console.log('line items:', checkout.lineItems)
 
   // const moreThanOneItemInCart =
   //   checkout &&
